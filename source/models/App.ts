@@ -6,7 +6,6 @@ export class App extends ObservableObject {
   @unobservable readonly version: string
 
   @unobservable readonly homePage: Page;
-  //@unobservable readonly pages: Page[]
   activePage: Page;
 
   constructor(version: string) {
