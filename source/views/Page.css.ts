@@ -91,5 +91,31 @@ export const style = restyler(() => {
         width: 60%;
       }
     `,
+
+    ContentContent: css`
+      display: flex;
+      flex-direction: column;
+    `,
+
+    Input: css`
+      padding: 5px;  
+      margin: 10px 0; 
+      width: 50%;
+      height: 30px;
+      color: black;
+      background: #e5eb46;
+      border-width: 10px;
+      border-color: white; 
+    `,
+
+    Button: css`
+      width: 50%;
+      height: 50px;
+      margin: 10px 0;
+      background: #789FFF; 
+      color: #143143;
+      font-weight: bold; 
+    `,
   }
+
 })

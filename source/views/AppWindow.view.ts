@@ -8,17 +8,17 @@ export function AppWindow(
   app: App) {
   return (
     Div('AppWindow', e => {
-      //e.className = style.class.AppWindow
-      //Div('TopLine', e => { e.className = style.class.TopLine })
-      // Div('Header', e => {
-      //   e.className = style.class.Header
-      //   //Logo()
-      //   // Div('Menu', e => {
-      //   //   e.className = style.class.Menu
-      //   //   for (const page of app.pages)
-      //   //     MenuItem(page)
-      //   // })
-      // })
+      e.className = style.class.AppWindow
+      Div('TopLine', e => { e.className = style.class.TopLine })
+      Div('Header', e => {
+        e.className = style.class.Header
+        //Logo()
+        // Div('Menu', e => {
+        //   e.className = style.class.Menu
+        //   for (const page of app.pages)
+        //     MenuItem(page)
+        // })
+      })
       RxDiv('Body', null, e => {
         e.className = style.class.Body
         HomePageView(app)

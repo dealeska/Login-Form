@@ -11,7 +11,7 @@ export class App extends ObservableObject {
   constructor(version: string) {
     super()
     this.version = version
-    this.homePage = new Page('/home', '<img src="assets/home.svg"/>', 'Login Form')
+    this.homePage = new Page('/home', '<img src="assets/icon2.svg"/>', 'Login Form')
     this.activePage = this.homePage
     this.activePage.isActive = true
   }
