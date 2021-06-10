@@ -1,9 +1,13 @@
-import { Button, Div, Input } from 'reactronic-front'
+import { Button, Div, Input, RxDiv, RxTextArea, usingParent } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App } from '../models/App'
+import { Authentication } from '../models/Login'
 
 export function HomePageView(app: App) {
+  const user = new Authentication()
+  user.chackPass('12345678')
+  user.chackLogin('anonimus')
   return (
     PageView(app.homePage, e => {
       Div('Description', e => {
@@ -22,10 +26,17 @@ export function HomePageView(app: App) {
           e.placeholder = 'password'
           e.type = 'password'
         })
-        Button('Button', e => {
+
+        RxDiv('Button', null, e => {
           e.className = style.class.Button
-          e.type = 'submit'
-          e.innerHTML = 'НАЖМИ'
+          Div('FindLabel', e => {
+            e.className = style.class.FindLabel
+            e.textContent = 'Search'
+          })
+        })
+        Div('Description', e => {
+          e.className = style.class.Description
+          e.innerHTML = user.state
         })
       })
     })

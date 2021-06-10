@@ -98,24 +98,66 @@ export const style = restyler(() => {
     `,
 
     Input: css`
-      padding: 5px;  
-      margin: 10px 0; 
       width: 50%;
       height: 30px;
-      color: black;
-      background: #e5eb46;
-      border-width: 10px;
-      border-color: white; 
+      padding: 5px;
+      z-index: 1000000;
+      margin: 10px 0.25ch;    
+      background-color: ${themes.active.playgroundTextAreaBackground};
+      color: ${themes.active.playgroundTextAreaForeground};;
+      caret-color: ${themes.active.playgroundTextAreaCaretColor};
+      &:focus {
+        outline: none;
+      }
+
+      &:focus:not([readOnly]) {
+        box-shadow: 0 0 0 2px ${themes.active.activeItemMarker};
+      }
     `,
 
+
     Button: css`
-      width: 50%;
-      height: 50px;
-      margin: 10px 0;
-      background: #789FFF; 
-      color: #143143;
-      font-weight: bold; 
+      font-size: 125%;
+      display: flex;
+      flex-direction: row;
+      color: white;
+      text-shadow: 0 0 1px gray;
+      background-color: ${themes.active.playgroundFindButtonBackground};
+      margin-bottom: 1ch;
+      margin-right: 0.5ch;
+      margin-left: 0.1ch;
+      margin-top: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 1px 0 transparent;
+      transition: box-shadow 0.3s ease;
+      border-radius: 0.25em;
+      user-select: none;
+      width      : 100px;
+      /* .UserSelectNoneMixin(); */
+
+      &:hover {
+        box-shadow: 0 0 0 1px white;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:active {
+        background-color: lighten(${themes.active.playgroundFindButtonBackground}, 10%);
+      }
+
     `,
+
+    FindLabel: css`
+      flex-grow: 0;
+      padding: 0.7ch 1.5ch 0.7ch 1.5ch;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `,
+
   }
 
 })

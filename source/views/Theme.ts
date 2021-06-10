@@ -18,28 +18,28 @@ export interface Theme {
   documentCodeInlineBackground: string
   documentCodeBlockForeground: string
   documentCodeBlockBackground: string
-  // playgroundTextAreaBackground: string
-  // playgroundTextAreaForeground: string
-  // playgroundTextAreaCaretColor: string
+  playgroundTextAreaBackground: string
+  playgroundTextAreaForeground: string
+  playgroundTextAreaCaretColor: string
   // playgroundTextLengthForeground: string
   // playgroundTextLengthErrorForeground: string
   // playgroundWhiteSpaceForeground: string
-  // playgroundFindButtonBackground: string
-  // playgroundFindButtonForeground: string
-  // playgroundFindButtonCheckMarkBackground: string
-  // playgroundFindButtonCheckMarkForeground: string
-  // playgroundFindButtonCheckMarkHoverBackground: string
-  // playgroundTagButtonBackground: string
-  // playgroundTagButtonActiveForeground: string
-  // playgroundTagButtonInactiveForeground: string
-  // playgroundTagButtonCounterForeground: string
+  playgroundFindButtonBackground: string
+  playgroundFindButtonForeground: string
+  playgroundFindButtonCheckMarkBackground: string
+  playgroundFindButtonCheckMarkForeground: string
+  playgroundFindButtonCheckMarkHoverBackground: string
+  playgroundTagButtonBackground: string
+  playgroundTagButtonActiveForeground: string
+  playgroundTagButtonInactiveForeground: string
+  playgroundTagButtonCounterForeground: string
   // playgroundReadOnlyPackageUnderPointerMarker: string
 }
 
 export class DarkBlueTheme implements Theme {
   readonly name = 'DarkBlueTheme'
 
-  background = '#048708'
+  background = '#14344F'
   foreground = '#E0E0E0'
   logoBackground = '#E0E0E0' // light blue
   logoForeground = 'white'
@@ -56,20 +56,20 @@ export class DarkBlueTheme implements Theme {
   documentCodeInlineBackground = 'rgba(255, 255, 255, 0.07)'
   documentCodeBlockForeground = '#67E8FF'
   documentCodeBlockBackground = 'transparent'
-  // playgroundTextAreaBackground = 'white'
-  // playgroundTextAreaForeground = '#444'
-  // playgroundTextAreaCaretColor = 'black'
+  playgroundTextAreaBackground = 'white'
+  playgroundTextAreaForeground = '#444'
+  playgroundTextAreaCaretColor = 'black'
   // playgroundTextLengthForeground = 'rgb(253, 165, 93)'
   // playgroundTextLengthErrorForeground = 'rgb(253, 93, 93)'
   // playgroundWhiteSpaceForeground = 'lightgrey'
-  // playgroundFindButtonBackground = '#00B831'
-  // playgroundFindButtonForeground = 'white'
-  // playgroundFindButtonCheckMarkBackground = '#EEE'
-  // playgroundFindButtonCheckMarkForeground = '#444'
-  // playgroundFindButtonCheckMarkHoverBackground = '#DDD'
-  // playgroundTagButtonBackground = '#AAA'
-  // playgroundTagButtonActiveForeground = 'black'
-  // playgroundTagButtonInactiveForeground = '#E0E0E0'
-  // playgroundTagButtonCounterForeground = 'grey'
+   playgroundFindButtonBackground = '#00B831'
+   playgroundFindButtonForeground = 'white'
+   playgroundFindButtonCheckMarkBackground = '#EEE'
+   playgroundFindButtonCheckMarkForeground = '#444'
+   playgroundFindButtonCheckMarkHoverBackground = '#DDD'
+   playgroundTagButtonBackground = '#AAA'
+   playgroundTagButtonActiveForeground = 'black'
+   playgroundTagButtonInactiveForeground = '#E0E0E0'
+   playgroundTagButtonCounterForeground = 'grey'
   // playgroundReadOnlyPackageUnderPointerMarker = '#ECECEC'
 }
