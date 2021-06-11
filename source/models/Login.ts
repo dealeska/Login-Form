@@ -2,64 +2,79 @@ import { ObservableObject, reaction, transaction, unobservable } from 'reactroni
 export interface User
 {
     login: string
-    pass: string
+    password: string
 }
 export class Authentication extends ObservableObject
 {
-    @unobservable readonly users: User[] = [{login: 'anonimus', pass: '12345678'}]
+    @unobservable readonly users: User[] = [{login: 'anonimus', password: '12345678'}]
     state: string
     login: string
-    pass: string
+    password: string
     constructor(){
       super()
       this.login = ''
-      this.pass = ''
-      this.state = 'nooo'
+      this.password = ''
+      this.state = 'enter something'
     }
+
     @transaction
-    chackLogin(login: string): void
+    setLogin(userLogin: string): void
     {
-      this.users.forEach(e => {
-        if (e.login == login)
-        {
-          this.login = login
-          if (this.pass != '' && e.pass != this.pass)
-          {
-            this.state = 'true login, pass false'
-          }
-          else
-          {
-            this.state = 'true login, true pass'
-          }
-        }
-      })
+      this.login = userLogin
     }
+
     @transaction
-    chackPass(pass: string): void
+    setPassword(userPassword: string): void
     {
-      if (this.login == '')
-        this.pass = pass
-      else
-        this.users.forEach(e => {
-          if (e.login == this.login)
-          {
-            if (e.pass == pass)
-            {
-              this.pass = pass
-              this.state = 'true login, true pass'
-            }
-            else
-            {
-              this.state = 'true login, false pass'
-            }
-          }
-        })
+      this.password = userPassword
     }
+
+    // @reaction
+    // checkLogin(): void
+    // {
+    //   this.users.forEach(e => {
+    //     if (e.login == this.login)
+    //     {
+    //       this.login = this.login
+    //       if (this.password != '' && e.password != this.password)
+    //       {
+    //         this.state = 'true login, pass false'
+    //       }
+    //       else
+    //       {
+    //         this.state = 'true login, true pass'
+    //       }
+    //     }
+    //   })
+    // }
+
+    // @reaction
+    // checkPassword(): void
+    // {
+    //   if (this.login == '')
+    //     this.password = this.password
+    //   else
+    //     this.users.forEach(e => {
+    //       if (e.login == this.login)
+    //       {
+    //         if (e.password == this.password)
+    //         {
+    //           this.password = this.password
+    //           this.state = 'true login, true pass'
+    //         }
+    //         else
+    //         {
+    //           this.state = 'true login, false pass'
+    //         }
+    //       }
+    //     })
+    // }
+
     @reaction
     printInfo(): void {
-      if (this.login == '')
-        this.state = 'no'
+      if (this.login === 'anonimus' && this.password === '12345678')
+        this.state = 'Your are is a user!'
       else
-        this.state = 'yes'
+        this.state = 'Go away, stranger'
     }
 }

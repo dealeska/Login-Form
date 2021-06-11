@@ -6,8 +6,8 @@ import { Authentication } from '../models/Login'
 
 export function HomePageView(app: App) {
   const user = new Authentication()
-  user.chackPass('12345678')
-  user.chackLogin('anonimus')
+  //user.chackPass('12345678')
+  //user.chackLogin('anonimus')
   return (
     PageView(app.homePage, e => {
       Div('Description', e => {
@@ -20,11 +20,17 @@ export function HomePageView(app: App) {
           e.className = style.class.Input
           e.placeholder = 'login'
           e.type = 'text'
+          e.oninput = () => {
+            user.setLogin(e.value)
+          }
         })
         Input('Password', e => {
           e.className = style.class.Input
           e.placeholder = 'password'
           e.type = 'password'
+          e.oninput = () => {
+            user.setPassword(e.value)
+          }
         })
 
         RxDiv('Button', null, e => {
@@ -33,6 +39,9 @@ export function HomePageView(app: App) {
             e.className = style.class.FindLabel
             e.textContent = 'Search'
           })
+          e.onclick = async () => {
+            console.log(user.state)
+          }
         })
         Div('Description', e => {
           e.className = style.class.Description
