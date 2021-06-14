@@ -5,49 +5,52 @@ import { App } from '../models/App'
 import { Authentication } from '../models/Login'
 
 export function HomePageView(app: App) {
-  const user = new Authentication()
-  //user.chackPass('12345678')
-  //user.chackLogin('anonimus')
-  return (
-    PageView(app.homePage, e => {
-      Div('Description', e => {
-        e.className = style.class.Description
-        e.innerHTML = 'Test <b>App</b> with reactronic'
-      })
-      Div('Inputs', e => {
-        e.className = style.class.ContentContent
-        Input('Login', e => {
-          e.className = style.class.Input
-          e.placeholder = 'login'
-          e.type = 'text'
-          e.oninput = () => {
-            user.setLogin(e.value)
-          }
-        })
-        Input('Password', e => {
-          e.className = style.class.Input
-          e.placeholder = 'password'
-          e.type = 'password'
-          e.oninput = () => {
-            user.setPassword(e.value)
-          }
-        })
-
-        RxDiv('Button', null, e => {
-          e.className = style.class.Button
-          Div('FindLabel', e => {
-            e.className = style.class.FindLabel
-            e.textContent = 'Search'
-          })
-          e.onclick = async () => {
-            console.log(user.state)
-          }
-        })
+  {
+    const user = new Authentication()
+    return (
+      PageView(app.homePage, e => {
         Div('Description', e => {
           e.className = style.class.Description
+          e.innerHTML = 'Test <b>App</b> with reactronic'
+        })
+        Div('Inputs', e => {
+          e.className = style.class.ContentContent
+          Input('Login', e => {
+            e.className = style.class.Input
+            e.placeholder = 'login'
+            e.type = 'text'
+            e.oninput = () => {
+              user.setLogin(e.value)
+            }
+          })
+          Input('Password', e => {
+            e.className = style.class.Input
+            e.placeholder = 'password'
+            e.type = 'password'
+            e.oninput = () => {
+              user.setPassword(e.value)
+            }
+          })
+
+          RxDiv('Button', null, e => {
+            e.className = style.class.Button
+            Div('FindLabel', e => {
+              e.className = style.class.FindLabel
+              e.textContent = 'Search'
+            })
+            e.onclick = async () => {
+              console.log(user.state)
+            }
+          })
+        })
+
+        // Я не понимаю почему оно не видит...
+        RxDiv('Description', null, e => {
+          e.className = style.class.Description
+          const user = new Authentication()
           e.innerHTML = user.state
         })
       })
-    })
-  )
+    )
+  }
 }
