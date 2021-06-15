@@ -6,7 +6,7 @@ import { Authentication } from '../models/Login'
 
 export function HomePageView(app: App) {
   {
-    const user = new Authentication()
+    //const user = new Authentication()
     return (
       PageView(app.homePage, e => {
         Div('Description', e => {
@@ -20,7 +20,7 @@ export function HomePageView(app: App) {
             e.placeholder = 'login'
             e.type = 'text'
             e.oninput = () => {
-              user.setLogin(e.value)
+              app.user.setLogin(e.value)
             }
           })
           Input('Password', e => {
@@ -28,7 +28,7 @@ export function HomePageView(app: App) {
             e.placeholder = 'password'
             e.type = 'password'
             e.oninput = () => {
-              user.setPassword(e.value)
+              app.user.setPassword(e.value)
             }
           })
 
@@ -38,8 +38,9 @@ export function HomePageView(app: App) {
               e.className = style.class.FindLabel
               e.textContent = 'Search'
             })
+            //Сделать транзакцию
             e.onclick = async () => {
-              console.log(user.state)
+              console.log(app.user.state)
             }
           })
         })
@@ -47,8 +48,8 @@ export function HomePageView(app: App) {
         // Я не понимаю почему оно не видит...
         RxDiv('Description', null, e => {
           e.className = style.class.Description
-          const user = new Authentication()
-          e.innerHTML = user.state
+          //const user = new Authentication()
+          e.innerHTML = app.user.state
         })
       })
     )

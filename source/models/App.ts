@@ -1,4 +1,5 @@
 import { isolated, ObservableObject, reaction, Ref, unobservable } from 'reactronic'
+import { Authentication } from './Login'
 import { Page } from './Page'
 
 
@@ -7,6 +8,7 @@ export class App extends ObservableObject {
 
   @unobservable readonly homePage: Page;
   activePage: Page;
+  user: Authentication;
 
   constructor(version: string) {
     super()
@@ -14,5 +16,6 @@ export class App extends ObservableObject {
     this.homePage = new Page('/home', '<img src="assets/icon2.svg"/>', 'Login Form')
     this.activePage = this.homePage
     this.activePage.isActive = true
+    this.user = new Authentication()
   }
 }
