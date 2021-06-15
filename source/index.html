@@ -2,11 +2,10 @@
 <html>
 
 <head>
-  <title>Nevod</title>
+  <title>Login Form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, shrink-to-fit=yes">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.js"></script>
-  <script src="assets/config.js"></script>
   <style>
     /* RESET */
     html, body, div, span, applet, object, iframe,
@@ -129,83 +128,11 @@
       overflow-x: hidden;
       overflow-y: scroll;
     }
-
-    .cookie-notification {
-      z-index: 10000000;
-      position: fixed;
-      right: 20%;
-      left: 20%;
-      bottom: 4em;
-      padding: 1em;
-      background-color: rgba(0, 0, 0, .8);
-      color: white;
-      font-family: Calibri, Tahoma, Arial, sans-serif;
-      text-align: center;
-      backdrop-filter: blur(1em);
-    }
-    .cookie-notification_hidden_yes {
-      display: none;
-    }
-    .cookie-notification__header {
-      margin-bottom: 10px;
-      font-size: 23px;
-    }
-    .cookie-notification__body {
-      margin-bottom: 10px;
-    }
-    .cookie-notification__button {
-      color: #14344F;
-      background-color: white;
-      padding: 0.5em 1em;
-      cursor: pointer;
-      border-radius: 0.25em;
-    }
   </style>
 
 </head>
 
 <body id="body">
-  <div class="cookie-notification cookie-notification_hidden_yes">
-    <div class="cookie-notification__body">
-      <p>This website uses cookies to analyze traffic without collecting personal information.</p>
-      <p>If you don't agree with anonymous traffic analysis, please do not use this website.</p>
-    </div>
-    <div class="cookie-notification__buttons">
-      <button class="cookie-notification__button" id="yes">OK</button>
-    </div>
-  </div>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23133447-3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-23133447-3');
-
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document,'script','//mc.yandex.ru/metrika/tag.js', 'ym')
-    ym(78198853, 'init', {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      trackHash: true,
-      webvisor: true
-    });
-  </script>
-
-  <script type="text/javascript">
-
-    var notification = document.querySelector('.cookie-notification');
-
-    if (!Cookies.get('ok'))
-      notification.classList.remove('cookie-notification_hidden_yes');
-
-    document.querySelector('#yes').addEventListener('click', function () {
-      notification.classList.add('cookie-notification_hidden_yes');
-      Cookies.set('ok', '1');
-    });
-  </script>
 </body>
 
 </html>
