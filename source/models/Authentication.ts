@@ -6,6 +6,14 @@ export interface User
   password: string
 }
 
+// переименовать лучше состояния...
+export enum States {
+  NoData,
+  WrongLogin,
+  WrongPassword,
+  RigthUser
+}
+
 export class Authentication extends ObservableObject
 {
   @unobservable readonly users: User[] = [
@@ -14,14 +22,16 @@ export class Authentication extends ObservableObject
     {login: 'test', password: 'test'},
     {login: 'login', password: 'pass'}
   ]
-  state: string
+  state: States
+  stateMessage : string
   login: string
   password: string
   constructor(){
     super()
     this.login = ''
     this.password = ''
-    this.state = 'enter something'
+    this.state = States.NoData
+    this.stateMessage = ''
   }
 
   @transaction
@@ -38,38 +48,56 @@ export class Authentication extends ObservableObject
 
   @transaction
   async checkUser(): Promise<void> {
-    const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
+    // нужен ли await перед fetch?
+    const result = fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
       .then(res => res.json())
       .then(quote => console.log(quote.slip.advice))
 
-    console.log(this.state)
+    //console.log(this.stateMessage)
+
+    // возможно как-то лучше вынести в реакцию, но по нажатию кнопки только...
+    // появляется с опозданием почему то (иногда)
+    if (this.state === States.NoData)
+    {
+      this.stateMessage = 'Enter login and password'
+    } else if (this.state === States.WrongLogin)
+    {
+      this.stateMessage = 'User with this login doesn`t exist'
+    } else if (this.state === States.WrongPassword)
+    {
+      this.stateMessage = 'Wrong password'
+    } else if (this.state === States.RigthUser)
+    {
+      this.stateMessage = `Welcome, ${this.login}!`
+    }
   }
 
   @reaction
   printInfo(): void {
     if (this.login === '' || this.password === '')
     {
-      this.state = 'Enter all data!!!'
+      this.state = States.NoData
     }
     else if (this.login !== '')
     {
-      this.state = 'Go away, stranger'
+      this.state = States.WrongLogin
       this.users.forEach(e => {
         if (e.login === this.login)
         {
           if (e.password === this.password)
           {
-            this.state = 'Your are a user!'
+            this.state = States.RigthUser
           }
           else
           {
-            this.state = 'password != your password'
+            this.state = States.WrongPassword
           }
         }
       })
     }
-    else{
-      this.state = 'Go away, stranger'
+    else {
+      // возможно тут другое состояние
+      this.state = States.WrongLogin
     }
   }
 }

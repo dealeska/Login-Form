@@ -46,7 +46,7 @@ export function HomePageView(app: App) {
 
         RxDiv('Description', null, e => {
           e.className = style.class.Description
-          e.innerHTML = app.user.state
+          e.innerHTML = app.user.stateMessage
         })
       })
     )
