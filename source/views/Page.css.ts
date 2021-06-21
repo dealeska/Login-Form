@@ -158,6 +158,10 @@ export const style = restyler(() => {
       align-items: center;
     `,
 
+    Error: css`
+      font-size: 110%;    
+      color: ${themes.active.errorText};
+    `,
   }
 
 })

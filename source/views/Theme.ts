@@ -9,6 +9,7 @@ export interface Theme {
   activeItemMarker: string
   itemUnderPointerMarker: string
   emphasizedText: string
+  errorText : string
   titleForeground: string
   documentHeading1Foreground: string
   documentHeading2Foreground: string
@@ -47,6 +48,7 @@ export class DarkBlueTheme implements Theme {
   activeItemMarker = '#00B3FF'
   itemUnderPointerMarker = '#00A4E5' // 10% darken light blue
   emphasizedText = '#5DF586'
+  errorText = '#ed1c1c'
   titleForeground = '#E0E0E0'
   documentHeading1Foreground = '#E0E0E0'
   documentHeading2Foreground = 'white'

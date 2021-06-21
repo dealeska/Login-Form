@@ -68,6 +68,7 @@ export class Authentication extends ObservableObject
       this.stateMessage = 'Wrong password'
     } else if (this.state === States.RigthUser)
     {
+      // пока что тоже красного цвета...
       this.stateMessage = `Welcome, ${this.login}!`
     }
   }
