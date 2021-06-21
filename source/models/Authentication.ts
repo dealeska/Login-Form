@@ -36,6 +36,15 @@ export class Authentication extends ObservableObject
     this.password = userPassword
   }
 
+  @transaction
+  async checkUser(): Promise<void> {
+    const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
+      .then(res => res.json())
+      .then(quote => console.log(quote.slip.advice))
+
+    console.log(this.state)
+  }
+
   @reaction
   printInfo(): void {
     if (this.login === '' || this.password === '')
@@ -50,7 +59,7 @@ export class Authentication extends ObservableObject
         {
           if (e.password === this.password)
           {
-            this.state = 'Your are is a user!'
+            this.state = 'Your are a user!'
           }
           else
           {

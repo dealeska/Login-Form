@@ -2,7 +2,7 @@ import { Button, Div, Input, RxDiv, RxTextArea, usingParent } from 'reactronic-f
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App } from '../models/App'
-import { Authentication } from '../models/Login'
+//import { Authentication } from '../models/Authentication'
 
 export function HomePageView(app: App) {
   {
@@ -38,17 +38,14 @@ export function HomePageView(app: App) {
               e.className = style.class.FindLabel
               e.textContent = 'Search'
             })
-            //Сделать транзакцию
             e.onclick = async () => {
-              console.log(app.user.state)
+              await app.user.checkUser()
             }
           })
         })
 
-        // Я не понимаю почему оно не видит...
         RxDiv('Description', null, e => {
           e.className = style.class.Description
-          //const user = new Authentication()
           e.innerHTML = app.user.state
         })
       })

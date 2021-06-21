@@ -132,7 +132,7 @@ export const style = restyler(() => {
       transition: box-shadow 0.3s ease;
       border-radius: 0.25em;
       user-select: none;
-      width      : 100px;
+      width: fit-content;
       /* .UserSelectNoneMixin(); */
 
       &:hover {

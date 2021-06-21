@@ -1,5 +1,5 @@
 import { isolated, ObservableObject, reaction, Ref, unobservable } from 'reactronic'
-import { Authentication } from './Login'
+import { Authentication } from './Authentication'
 import { Page } from './Page'
 
 
