@@ -10,5 +10,4 @@ export function configureDebugging(): void {
     repetitiveReadWarningThreshold: Number.MAX_SAFE_INTEGER,
     garbageCollectionSummaryInterval: Number.MAX_SAFE_INTEGER,
   })
-  trace(false, 'r', 'SetPropValues')
 }

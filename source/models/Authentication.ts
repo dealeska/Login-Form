@@ -11,7 +11,7 @@ export enum States {
   NoData,
   WrongLogin,
   WrongPassword,
-  RigthUser
+  RightUser
 }
 
 export class Authentication extends ObservableObject
@@ -48,12 +48,8 @@ export class Authentication extends ObservableObject
 
   @transaction
   async checkUser(): Promise<void> {
-    // нужен ли await перед fetch?
-    const result = fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
-      .then(res => res.json())
-      .then(quote => console.log(quote.slip.advice))
-
-    //console.log(this.stateMessage)
+    const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
+    // обработать запрос
 
     // возможно как-то лучше вынести в реакцию, но по нажатию кнопки только...
     // появляется с опозданием почему то (иногда)
@@ -66,7 +62,7 @@ export class Authentication extends ObservableObject
     } else if (this.state === States.WrongPassword)
     {
       this.stateMessage = 'Wrong password'
-    } else if (this.state === States.RigthUser)
+    } else if (this.state === States.RightUser)
     {
       // пока что тоже красного цвета...
       this.stateMessage = `Welcome, ${this.login}!`
@@ -87,7 +83,7 @@ export class Authentication extends ObservableObject
         {
           if (e.password === this.password)
           {
-            this.state = States.RigthUser
+            this.state = States.RightUser
           }
           else
           {
