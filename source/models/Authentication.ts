@@ -1,4 +1,4 @@
-import { ObservableObject, reaction, transaction, unobservable } from 'reactronic'
+import { ObservableObject, reaction, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
 
 export interface User
 {
@@ -46,7 +46,7 @@ export class Authentication extends ObservableObject
     this.password = userPassword
   }
 
-  @transaction
+  @transaction @reentrance(Reentrance.CancelAndWaitPrevious)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
     // обработать запрос

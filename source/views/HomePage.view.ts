@@ -8,10 +8,15 @@ export function HomePageView(app: App) {
   {
     //const user = new Authentication()
     return (
-      PageView(app.homePage, e => {
+      PageView(app.activePage, e => {
         Div('Description', e => {
           e.className = style.class.Description
-          e.innerHTML = 'Test <b>App</b> with reactronic'
+          if (app.activePage === app.pages[1]) {
+            e.innerHTML = 'Enter'
+          }
+          else {
+            e.innerHTML = 'Enter your login and password'
+          }
         })
         Div('Inputs', e => {
           e.className = style.class.ContentContent

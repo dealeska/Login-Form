@@ -41,11 +41,18 @@ export const style = restyler(() => {
       padding-left: 1.5ch;
       border-left: 0.12ch solid ${themes.active.activeItemMarker};
       color: ${themes.active.titleForeground};
+
+      @media screen and (max-width: 1110px) {
+        font-size: 250%;
+      }
+      @media screen and (max-width: 800px) {
+        font-size: 200%;
+      }
     `,
 
     Content: css`
-      grid-row: 2 / span 1;
-      grid-column: 1 / span 2;
+      grid-row: 3 / span 1;
+      grid-column: 2 / span 2;
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;
@@ -60,7 +67,7 @@ export const style = restyler(() => {
     RightSide,
 
     Description: css`
-      font-size: 110%;
+      font-size: 130%;
 
       img {
         height: 0.93ch;
@@ -136,7 +143,7 @@ export const style = restyler(() => {
       /* .UserSelectNoneMixin(); */
 
       &:hover {
-        box-shadow: 0 0 0 1px white;
+        box-shadow: 0 0 0 1px rgb(0, 190, 50);
       }
 
       &:focus {

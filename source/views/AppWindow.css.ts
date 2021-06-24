@@ -44,32 +44,6 @@ export const style = restyler(() => {
       }
     `,
 
-    Logo: css`
-      vertical-align: bottom;
-      align-self: baseline;
-      font-size: 127%;
-      padding: 0.25em 0 0 0.1em; // TODO: resize the logo image and get rid of 0.1em offset
-
-      img {
-        vertical-align: top;
-        width: auto;
-        height: 1em;
-      }
-
-      a {
-        color: ${themes.active.logoForeground};
-      }
-    `,
-
-    NevodLogo: css`
-      margin-left: 0.5ch;
-      padding: 0 0.5ch;
-      font-weight: bold;
-      background-color: ${themes.active.logoBackground};
-      color: ${themes.active.logoForeground};
-      text-shadow: 0 0 1px black;
-    `,
-
     Menu: css`
       display: flex;
       flex-direction: row;
@@ -82,19 +56,6 @@ export const style = restyler(() => {
     Body: css`
       grid-row: 2 / span 1;
       grid-column: 2 / span 3;
-    `,
-
-    Footer: css`
-      grid-row: 3;
-      grid-column: 1 / span 5;
-      font-size: smaller;
-      color: ${themes.active.footerForeground};
-      text-align: center;
-      margin-bottom: 0.25em;
-
-      a {
-        color: inherit;
-      }
     `,
   }
 })
