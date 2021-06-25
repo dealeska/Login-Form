@@ -2,6 +2,7 @@ import { A, Div, RxDiv } from 'reactronic-front'
 import { App } from '../models/App'
 import { style } from './AppWindow.css'
 import { HomePageView } from './HomePage.view'
+import { EnterPageView } from './EnterPage.view'
 //import { cx } from '@emotion/css'
 
 export function AppWindow(
@@ -15,7 +16,11 @@ export function AppWindow(
       })
       RxDiv('Body', null, e => {
         e.className = style.class.Body
-        HomePageView(app)
+        if (app.homePage.isActive) {
+          HomePageView(app)
+        } else if (app.enterPage.isActive) {
+          EnterPageView(app)
+        }
       })
     })
   )

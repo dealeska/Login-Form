@@ -1,4 +1,4 @@
-import { Button, Div, Input, RxDiv, RxTextArea, usingParent } from 'reactronic-front'
+import { Button, Div, Input, RxDiv, RxTextArea, usingParent, A } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App } from '../models/App'
@@ -52,6 +52,12 @@ export function HomePageView(app: App) {
         RxDiv('Description', null, e => {
           e.className = style.class.Error
           e.innerHTML = app.user.stateMessage
+        })
+        // временная ссылка, но по ней не переходит, но оно и не должно так работать...
+        A('Description', e => {
+          e.className = style.class.Error
+          e.innerHTML = 'Next Page'
+          e.href = '/enter'
         })
       })
     )
