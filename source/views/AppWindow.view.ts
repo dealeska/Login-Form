@@ -15,6 +15,7 @@ export function AppWindow(
         e.className = style.class.Header
       })
       RxDiv('Body', null, e => {
+        console.log('AppWindow.view.ts зашло')
         e.className = style.class.Body
         if (app.homePage.isActive) {
           HomePageView(app)

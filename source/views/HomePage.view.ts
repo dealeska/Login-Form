@@ -1,4 +1,4 @@
-import { Button, Div, Input, RxDiv, RxTextArea, usingParent, A } from 'reactronic-front'
+import { Button, Div, Input, RxDiv, RxFragment, usingParent, RxA } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App } from '../models/App'
@@ -54,10 +54,21 @@ export function HomePageView(app: App) {
           e.innerHTML = app.user.stateMessage
         })
         // временная ссылка, но по ней не переходит, но оно и не должно так работать...
-        A('Description', e => {
-          e.className = style.class.Error
-          e.innerHTML = 'Next Page'
-          e.href = '/enter'
+        // A('Description', e => {
+        //   e.className = style.class.Error
+        //   e.innerHTML = 'Next Page'
+        //   e.href = '/enter'
+        // })
+        RxA('MenuItem-' + app.enterPage.link, null, e => {
+          // e.classList.add(style.class.MenuItem)
+          e.innerHTML = app.enterPage.linkTitle
+          // if (page instanceof PlaygroundPage && page.sampleDataName !== undefined)
+          //   e.href = page.hashLink + page.sampleDataName
+          // else
+          e.href = app.enterPage.hashLink
+          // RxFragment('SelectionHandler', null, () => {
+          //   e.classList.toggle(style.class.MenuItemSelected, page.isActive)
+          // })
         })
       })
     )
