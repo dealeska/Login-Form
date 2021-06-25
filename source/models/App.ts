@@ -20,9 +20,6 @@ export class App extends ObservableObject {
     this.homePage = new Page('/home', 'Home', 'Login Form')
     this.enterPage = new Page('/enter', 'Enter', 'Login Form')
     this.pages = [this.homePage, this.enterPage]
-
-    // вот тут если поставить pages[1] то открывает страницу EnterPage (ну на всякий случай)
-    // надо понять как менять activePage...
     this.activePage = this.pages[0]
     this.activePage.isActive = true
     this.user = new Authentication()
@@ -40,9 +37,9 @@ export class App extends ObservableObject {
           x.isActive = false
       })
     }
-    else {
-      // Navigation path doesn't correspond any page
-      isolated(() => this.navigation.navigate(this.homePage.hashLink)) // recursive call to updateActivePage
-    }
+    // else {
+    //   // Navigation path doesn't correspond any page
+    //   isolated(() => this.navigation.navigate(this.homePage.hashLink)) // recursive call to updateActivePage
+    // }
   }
 }

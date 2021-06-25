@@ -24,7 +24,6 @@ export class HashNavigation extends ObservableObject {
     this.path = path
     this.params = parameters
     this.wasUpdatedFromBrowser = false
-    //console.log('Транзакция navigate')
   }
 
   matches(path: string, exact: boolean = true): boolean {
@@ -39,7 +38,6 @@ export class HashNavigation extends ObservableObject {
       const hash = formatLocation(path, params)
       history.pushState(undefined, '', hash)
     }
-    console.log('реакция updateBrowserHistory')
   }
 
   @transaction

@@ -8,7 +8,7 @@ export function EnterPageView(app: App) {
     return (
       Div('Description', e => {
         e.className = style.class.Title
-        e.innerHTML = 'Next Page'
+        e.innerHTML = `Welcome, ${app.user.login}!`
       })
     )
   }
