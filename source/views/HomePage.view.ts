@@ -2,6 +2,7 @@ import { Button, Div, Input, RxDiv, RxFragment, usingParent, RxA } from 'reactro
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App } from '../models/App'
+import { States } from '../models/Authentication'
 
 export function HomePageView(app: App) {
   {
@@ -35,8 +36,7 @@ export function HomePageView(app: App) {
             }
           })
 
-          RxA('MenuItem-' + app.enterPage.link, null, eLink => {
-            //eLink.href = app.enterPage.hashLink
+          RxA('Log-in' + app.enterPage.link, null, eLink => {
             RxDiv('Button', null, e => {
               e.className = style.class.Button
               Div('FindLabel', e => {
@@ -47,7 +47,8 @@ export function HomePageView(app: App) {
                 await app.user.checkUser()
               }
               // нужно 2 раза кликать чтобы перешло на некст страницу
-              if (app.user.stateMessage === 'Welcome!') {
+              // upd: похоже оно теперь с одного раза работает (не точно)
+              if (app.user.state == States.RightUser) {
                 eLink.href = app.enterPage.hashLink
               } else {
                 eLink.href = app.homePage.hashLink

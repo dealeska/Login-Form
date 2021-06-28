@@ -50,6 +50,7 @@ export class Authentication extends ObservableObject
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
     // обработать запрос
+    // другой api мейби взять
 
     // возможно как-то лучше вынести в реакцию, но по нажатию кнопки только...
     // появляется с опозданием почему то (иногда)
@@ -64,8 +65,7 @@ export class Authentication extends ObservableObject
       this.stateMessage = 'Wrong password'
     } else if (this.state === States.RightUser)
     {
-      // пока что тоже красного цвета...
-      this.stateMessage = 'Welcome!'
+      this.stateMessage = ''
     }
   }
 
