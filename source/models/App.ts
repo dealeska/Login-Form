@@ -1,4 +1,5 @@
-import { isolated, ObservableObject, reaction, Ref, transaction, unobservable } from 'reactronic'
+import { ObservableObject, reaction, transaction, unobservable } from 'reactronic'
+import { WebSensors, PointerButton } from 'reactronic-front'
 import { Authentication } from './Authentication'
 import { Page } from './Page'
 import { HashNavigation } from './HashNavigation'
@@ -10,12 +11,15 @@ export class App extends ObservableObject {
   @unobservable readonly homePage: Page;
   @unobservable readonly enterPage: Page;
   @unobservable readonly pages: Page[];
+  @unobservable readonly sensors: WebSensors;
+
   activePage: Page;
   user: Authentication;
 
   constructor(version: string) {
     super()
     this.navigation = new HashNavigation()
+    this.sensors = new WebSensors()
     this.version = version
     this.homePage = new Page('/home', 'Home', 'Login Form')
     this.enterPage = new Page('/enter', 'Enter', 'Login Form')
@@ -36,6 +40,18 @@ export class App extends ObservableObject {
         if (x !== newActivePage)
           x.isActive = false
       })
+    }
+  }
+
+  @reaction
+  protected handlePointerClick(): void {
+    const { pointer } = this.sensors
+    const infos = pointer.eventInfos
+
+    if (pointer.click === PointerButton.Left && infos.length > 0) {
+      //const tags = infos.map((x) => (x as Tag).name).join(", ");
+      //alert(tags);
+      console.log(infos)
     }
   }
 }

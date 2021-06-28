@@ -37,6 +37,7 @@ export function HomePageView(app: App) {
           })
 
           RxA('Log-in' + app.enterPage.link, null, eLink => {
+            eLink.eventInfo = { pointer: 'log-in' }
             RxDiv('Button', null, e => {
               e.className = style.class.Button
               Div('FindLabel', e => {

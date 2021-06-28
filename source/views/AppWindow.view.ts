@@ -9,6 +9,7 @@ export function AppWindow(
   app: App) {
   return (
     Div('AppWindow', e => {
+      app.sensors.listen(e)
       e.className = style.class.AppWindow
       Div('TopLine', e => { e.className = style.class.TopLine })
       Div('Header', e => {

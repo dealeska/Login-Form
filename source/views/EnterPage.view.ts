@@ -12,6 +12,7 @@ export function EnterPageView(app: App) {
         e.innerHTML = `Welcome, ${app.user.login}!`
       }),
       RxA('Log-out' + app.enterPage.link, null, e => {
+        e.eventInfo = { pointer: 'log-out' }
         e.href = app.homePage.hashLink
         RxDiv('Button', null, e => {
           e.className = style.class.Button
