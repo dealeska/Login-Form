@@ -1,4 +1,4 @@
-import { ObservableObject, reaction, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
+import { ObservableObject, reaction, Monitor, monitor, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
 
 export interface User
 {
@@ -13,6 +13,10 @@ export enum States {
   WrongPassword,
   RightUser
 }
+
+const SearchDelayMs = 100
+
+export const SearchMonitor = Monitor.create('Search Monitor', SearchDelayMs, 0)
 
 export class Authentication extends ObservableObject
 {
@@ -52,7 +56,7 @@ export class Authentication extends ObservableObject
     this.password = ''
   }
 
-  @transaction @reentrance(Reentrance.CancelAndWaitPrevious)
+  @transaction @reentrance(Reentrance.CancelAndWaitPrevious) @monitor(SearchMonitor)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
     // обработать запрос

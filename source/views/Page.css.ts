@@ -86,19 +86,6 @@ export const style = restyler(() => {
       }
     `,
 
-    Picture: css`
-      ${RightSide}
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-
-      @media screen and (max-width: 450px) {
-        width: 60%;
-      }
-    `,
-
     ContentContent: css`
       display: flex;
       flex-direction: column;
@@ -156,6 +143,13 @@ export const style = restyler(() => {
 
     `,
 
+    Result: css`
+      grid-area: 4 / 2 / span 3 / span 1;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+    `,
+
     FindLabel: css`
       flex-grow: 0;
       padding: 0.7ch 1.5ch 0.7ch 1.5ch;
@@ -164,6 +158,19 @@ export const style = restyler(() => {
       justify-content: center;
       align-items: center;
     `,
+
+    SearchIndicator: css`
+      height: 4ch;
+      width: 4ch;
+      margin-right: 0.5ch;
+      visibility: hidden;
+      margin-top: 7px;
+
+      &[rx-active=true] {
+        visibility: visible;
+      }
+    `,
+
 
     Error: css`
       font-size: 110%;    
