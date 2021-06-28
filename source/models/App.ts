@@ -37,9 +37,5 @@ export class App extends ObservableObject {
           x.isActive = false
       })
     }
-    // else {
-    //   // Navigation path doesn't correspond any page
-    //   isolated(() => this.navigation.navigate(this.homePage.hashLink)) // recursive call to updateActivePage
-    // }
   }
 }

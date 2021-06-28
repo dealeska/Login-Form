@@ -16,7 +16,6 @@ export class HashNavigation extends ObservableObject {
     this.params = p.params
     this.wasUpdatedFromBrowser = false
     window.onhashchange = this.browserHashChanged
-    console.log('Создание навигации')
   }
 
   @transaction
@@ -47,8 +46,6 @@ export class HashNavigation extends ObservableObject {
     this.path = p.path
     this.params = p.params
     this.wasUpdatedFromBrowser = true
-    console.log('транзакция browserHashChanged')
-    console.log(`hash = ${hash} p = ${p} path = ${this.path}`)
   }
 }
 
