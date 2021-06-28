@@ -4,17 +4,20 @@ import { Authentication } from './Authentication'
 import { Page } from './Page'
 import { HashNavigation } from './HashNavigation'
 
+export class SensorInfo {
+  constructor(public info: string) { }
+}
 
 export class App extends ObservableObject {
   @unobservable readonly version: string
   @unobservable readonly navigation: HashNavigation
-  @unobservable readonly homePage: Page;
-  @unobservable readonly enterPage: Page;
-  @unobservable readonly pages: Page[];
-  @unobservable readonly sensors: WebSensors;
+  @unobservable readonly homePage: Page
+  @unobservable readonly enterPage: Page
+  @unobservable readonly pages: Page[]
+  @unobservable readonly sensors: WebSensors
 
-  activePage: Page;
-  user: Authentication;
+  activePage: Page
+  user: Authentication
 
   constructor(version: string) {
     super()
@@ -44,14 +47,18 @@ export class App extends ObservableObject {
   }
 
   @reaction
-  protected handlePointerClick(): void {
+  protected async handlePointerClick(): Promise<void> {
     const { pointer } = this.sensors
     const infos = pointer.eventInfos
 
     if (pointer.click === PointerButton.Left && infos.length > 0) {
-      //const tags = infos.map((x) => (x as Tag).name).join(", ");
-      //alert(tags);
-      console.log(infos)
+      const tags = infos.map((x) => (x as SensorInfo).info)
+      console.log(tags)
+      if (tags[0] === 'log-in') {
+        await this.user.checkUser()
+      } else if (tags[0] === 'log-out') {
+        this.user.resetUser()
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Button, Div, Input, RxDiv, RxFragment, usingParent, RxA } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
-import { App } from '../models/App'
+import { App, SensorInfo} from '../models/App'
 import { States } from '../models/Authentication'
 
 export function HomePageView(app: App) {
@@ -37,18 +37,13 @@ export function HomePageView(app: App) {
           })
 
           RxA('Log-in' + app.enterPage.link, null, eLink => {
-            eLink.eventInfo = { pointer: 'log-in' }
+            eLink.eventInfo = { pointer: new SensorInfo('log-in') }
             RxDiv('Button', null, e => {
               e.className = style.class.Button
               Div('FindLabel', e => {
                 e.className = style.class.FindLabel
                 e.textContent = 'Search'
               })
-              e.onclick = async () => {
-                await app.user.checkUser()
-              }
-              // нужно 2 раза кликать чтобы перешло на некст страницу
-              // upd: похоже оно теперь с одного раза работает (не точно)
               if (app.user.state == States.RightUser) {
                 eLink.href = app.enterPage.hashLink
               } else {

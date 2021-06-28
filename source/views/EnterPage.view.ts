@@ -1,7 +1,7 @@
 import { Button, Div, Input, RxDiv, RxTextArea, usingParent, RxA, A } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
-import { App } from '../models/App'
+import { App, SensorInfo } from '../models/App'
 
 export function EnterPageView(app: App) {
   {
@@ -11,8 +11,10 @@ export function EnterPageView(app: App) {
         e.className = style.class.Title
         e.innerHTML = `Welcome, ${app.user.login}!`
       }),
+      // когда происходит выход, нужно удалять данные из user (сделано)
+      // но теперь там сразу красным светится (Enter data and password)
       RxA('Log-out' + app.enterPage.link, null, e => {
-        e.eventInfo = { pointer: 'log-out' }
+        e.eventInfo = { pointer: new SensorInfo('log-out') }
         e.href = app.homePage.hashLink
         RxDiv('Button', null, e => {
           e.className = style.class.Button

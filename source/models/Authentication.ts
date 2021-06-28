@@ -46,6 +46,12 @@ export class Authentication extends ObservableObject
     this.password = userPassword
   }
 
+  @transaction
+  resetUser(): void {
+    this.login = ''
+    this.password = ''
+  }
+
   @transaction @reentrance(Reentrance.CancelAndWaitPrevious)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
