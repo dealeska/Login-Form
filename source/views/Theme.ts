@@ -7,11 +7,11 @@ export interface Theme {
   emphasizedText: string
   errorText: string
   titleForeground: string
-  playgroundTextAreaBackground: string
-  playgroundTextAreaForeground: string
-  playgroundTextAreaCaretColor: string
-  playgroundFindButtonBackground: string
-  playgroundTagButtonBackground: string
+  formTextAreaBackground: string
+  formTextAreaForeground: string
+  formTextAreaCaretColor: string
+  formFindButtonBackground: string
+  formTagButtonBackground: string
 }
 
 export class DarkBlueTheme implements Theme {
@@ -23,9 +23,9 @@ export class DarkBlueTheme implements Theme {
   emphasizedText = '#5DF586'
   errorText = '#ed1c1c'
   titleForeground = '#E0E0E0'
-  playgroundTextAreaBackground = 'white'
-  playgroundTextAreaForeground = '#444'
-  playgroundTextAreaCaretColor = 'black'
-  playgroundFindButtonBackground = '#00B831'
-  playgroundTagButtonBackground = '#AAA'
+  formTextAreaBackground = 'white'
+  formTextAreaForeground = '#444'
+  formTextAreaCaretColor = 'black'
+  formFindButtonBackground = '#00B831'
+  formTagButtonBackground = '#AAA'
 }

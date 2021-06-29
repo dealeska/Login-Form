@@ -97,9 +97,9 @@ export const style = restyler(() => {
       padding: 5px;
       z-index: 1000000;
       margin: 10px 0.25ch;    
-      background-color: ${themes.active.playgroundTextAreaBackground};
-      color: ${themes.active.playgroundTextAreaForeground};;
-      caret-color: ${themes.active.playgroundTextAreaCaretColor};
+      background-color: ${themes.active.formTextAreaBackground};
+      color: ${themes.active.formTextAreaForeground};;
+      caret-color: ${themes.active.formTextAreaCaretColor};
       &:focus {
         outline: none;
       }
@@ -116,7 +116,7 @@ export const style = restyler(() => {
       flex-direction: row;
       color: white;
       text-shadow: 0 0 1px gray;
-      background-color: ${themes.active.playgroundFindButtonBackground};
+      background-color: ${themes.active.formFindButtonBackground};
       margin-bottom: 1ch;
       margin-right: 0.5ch;
       margin-left: 0.1ch;
@@ -138,7 +138,7 @@ export const style = restyler(() => {
       }
 
       &:active {
-        background-color: lighten(${themes.active.playgroundFindButtonBackground}, 10%);
+        background-color: lighten(${themes.active.formFindButtonBackground}, 10%);
       }
 
     `,

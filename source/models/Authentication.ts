@@ -1,52 +1,48 @@
 import { ObservableObject, reaction, Monitor, monitor, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
 
-export interface User
-{
+export interface User {
   login: string
   password: string
 }
 
-// переименовать лучше состояния...
-export enum States {
-  NoData,
-  WrongLogin,
-  WrongPassword,
-  RightUser
+export enum State {
+  IncorrectData,
+  LogIn,
+  LogOut
 }
 
-const SearchDelayMs = 100
+const Delay = 100
 
-export const SearchMonitor = Monitor.create('Search Monitor', SearchDelayMs, 0)
+export const SearchMonitor = Monitor.create('Search Monitor', -1, Delay)
 
-export class Authentication extends ObservableObject
-{
+export class Authentication extends ObservableObject {
   @unobservable readonly users: User[] = [
-    {login: 'anonimus', password: '12345678'},
-    {login: 'alesya', password: 'aysela'},
-    {login: 'test', password: 'test'},
-    {login: 'login', password: 'pass'}
+    { login: 'anonimus', password: '12345678' },
+    { login: 'alesya', password: 'aysela' },
+    { login: 'test', password: 'test' },
+    { login: 'login', password: 'pass' }
   ]
-  state: States
-  stateMessage : string
+  @unobservable quote: string
+  state: State
+  stateMessage: string
   login: string
   password: string
-  constructor(){
+  constructor() {
     super()
+    this.quote = ''
     this.login = ''
     this.password = ''
-    this.state = States.NoData
+    this.state = State.LogOut
     this.stateMessage = ''
   }
 
   @transaction
-  setLogin(userLogin: string): void
-  {
+  setLogin(userLogin: string): void {
     this.login = userLogin
   }
 
   @transaction
-  setPassword(userPassword: string): void
-  {
+  setPassword(userPassword: string): void {
     this.password = userPassword
   }
 
@@ -59,52 +55,20 @@ export class Authentication extends ObservableObject
   @transaction @reentrance(Reentrance.CancelAndWaitPrevious) @monitor(SearchMonitor)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
-    // обработать запрос
-    // другой api мейби взять
 
-    // возможно как-то лучше вынести в реакцию, но по нажатию кнопки только...
-    // появляется с опозданием почему то (иногда)
-    if (this.state === States.NoData)
-    {
-      this.stateMessage = 'Enter login and password'
-    } else if (this.state === States.WrongLogin)
-    {
-      this.stateMessage = 'User with this login doesn`t exist'
-    } else if (this.state === States.WrongPassword)
-    {
-      this.stateMessage = 'Wrong password'
-    } else if (this.state === States.RightUser)
-    {
+    const text = await result.json()
+    this.quote = text.slip.advice
+    console.log(this.quote)
+
+    const user = this.users.find(u => u.login === this.login && u.password === this.password)
+
+    if (user !== undefined) {
+      this.state = State.LogIn
       this.stateMessage = ''
     }
-  }
-
-  @reaction
-  printInfo(): void {
-    if (this.login === '' || this.password === '')
-    {
-      this.state = States.NoData
-    }
-    else if (this.login !== '')
-    {
-      this.state = States.WrongLogin
-      this.users.forEach(e => {
-        if (e.login === this.login)
-        {
-          if (e.password === this.password)
-          {
-            this.state = States.RightUser
-          }
-          else
-          {
-            this.state = States.WrongPassword
-          }
-        }
-      })
-    }
     else {
-      // возможно тут другое состояние
-      this.state = States.WrongLogin
+      this.state = State.IncorrectData
+      this.stateMessage = 'Incorrect username or password'
     }
   }
 }
