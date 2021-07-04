@@ -2,12 +2,13 @@ import { Button, Div, Input, RxDiv, RxFragment, usingParent, RxA, RxImg } from '
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App, SensorInfo } from '../models/App'
-import { SearchMonitor, State } from '../models/Authentication'
+import { SearchMonitor } from '../models/Authentication'
 
 export function HomePageView(app: App) {
   {
     return (
       PageView(app.homePage, e => {
+        e.eventInfo = { keyboard: new SensorInfo('log-in') }
         Div('Description', e => {
           e.className = style.class.Description
           e.innerHTML = 'Enter your login and password'

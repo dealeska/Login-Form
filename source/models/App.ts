@@ -1,5 +1,5 @@
 import { ObservableObject, reaction, transaction, unobservable } from 'reactronic'
-import { WebSensors, PointerButton } from 'reactronic-front'
+import { WebSensors, PointerButton, Keyboard } from 'reactronic-front'
 import { Authentication, State } from './Authentication'
 import { Page } from './Page'
 
@@ -41,6 +41,24 @@ export class App extends ObservableObject {
     const infos = pointer.eventInfos
 
     if (pointer.click === PointerButton.Left && infos.length > 0) {
+      const tags = infos.map((x) => (x as SensorInfo).info)
+      console.log(tags)
+      if (tags[0] === 'log-in') {
+        await this.authentication.checkUser()
+      } else if (tags[0] === 'log-out') {
+        this.authentication.resetUser()
+        this.authentication.state = State.LogOut
+      }
+    }
+  }
+
+  // срабатывает не с первого раза (не всегда переходит на страницу)
+  @reaction
+  protected async handleEnterPressed(): Promise<void> {
+    const { keyboard } = this.sensors
+    const infos = keyboard.eventInfos
+    console.log('нажатие на кнопку')
+    if (keyboard.down === 'Enter') {
       const tags = infos.map((x) => (x as SensorInfo).info)
       console.log(tags)
       if (tags[0] === 'log-in') {
