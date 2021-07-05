@@ -54,6 +54,8 @@ export class App extends ObservableObject {
   }
 
   // срабатывает не с первого раза (не всегда переходит на страницу)
+  // вообще так то и по нажатию мышкой по кнопке не всегда с первого раза переходит на другую страницу
+  // нужно как то пофиксить, но я пока не знаю даже в чем проблема
   @reaction
   protected async handleEnterPressed(): Promise<void> {
     const { keyboard } = this.sensors

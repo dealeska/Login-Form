@@ -1,4 +1,4 @@
-import { Button, Div, Input, RxDiv, RxTextArea, usingParent, RxA, A, RxImg } from 'reactronic-front'
+import { Div, RxDiv, RxImg } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App, SensorInfo } from '../models/App'
@@ -30,17 +30,7 @@ export function EnterPageView(app: App) {
           })
         })
       })
-      // RxDiv('Button', null, e => {
-      //   e.className = style.class.Button
-      //   e.eventInfo = { pointer: new SensorInfo('log-out') }
-      //   Div('FindLabel', e => {
-      //     e.className = style.class.FindLabel
-      //     e.textContent = 'Log out'
-      //   })
-      // })
     })
-
-
   )
 }
 

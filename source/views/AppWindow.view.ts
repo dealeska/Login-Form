@@ -1,9 +1,8 @@
-import { A, Div, RxDiv } from 'reactronic-front'
+import { Div, RxDiv } from 'reactronic-front'
 import { App } from '../models/App'
 import { style } from './AppWindow.css'
 import { HomePageView } from './HomePage.view'
 import { EnterPageView } from './EnterPage.view'
-//import { cx } from '@emotion/css'
 
 export function AppWindow(
   app: App) {

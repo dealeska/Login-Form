@@ -1,4 +1,4 @@
-import { Button, Div, Input, RxDiv, RxFragment, usingParent, RxA, RxImg } from 'reactronic-front'
+import { Div, Input, RxDiv, RxImg } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App, SensorInfo } from '../models/App'
@@ -31,8 +31,6 @@ export function HomePageView(app: App) {
               app.authentication.setPassword(e.value)
             }
           })
-
-
           Div('Result', e => {
             e.className = style.class.Result
             RxDiv('Button', null, e => {
@@ -49,9 +47,7 @@ export function HomePageView(app: App) {
               e.src = './assets/loading.svg'
             })
           })
-
         })
-
         RxDiv('Description', null, e => {
           e.className = style.class.Error
           e.innerHTML = app.authentication.stateMessage

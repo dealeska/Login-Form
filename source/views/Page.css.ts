@@ -15,7 +15,6 @@ export const style = restyler(() => {
       justify-self: center;
     }
   `
-
   return {
     Page: css`
       margin: 0;
@@ -32,14 +31,10 @@ export const style = restyler(() => {
     `,
 
     Title: css`
-      /* grid-row: 1 / span 1;
-      grid-column: 2 / span 2; */
       font-size: 300%;
       font-weight: bold;
       line-height: 1.2;
       text-transform: uppercase;
-      /* padding-left: 1ch;
-      padding-right: 1ch; */
       border-bottom: 0.12ch solid ${themes.active.activeItemMarker};
       color: ${themes.active.titleForeground};
       grid-column-start: 2;
@@ -55,8 +50,6 @@ export const style = restyler(() => {
     `,
 
     Content: css`
-      /* grid-row: 3 / span 1;
-      grid-column: 2 / span 2; */
       grid-column-start: 2;
       grid-column-end: 2;
       grid-row-start: 4;
@@ -118,7 +111,6 @@ export const style = restyler(() => {
       }
     `,
 
-
     Button: css`
       font-size: 125%;
       display: flex;
@@ -136,7 +128,6 @@ export const style = restyler(() => {
       border-radius: 0.25em;
       user-select: none;
       width: fit-content;
-      /* .UserSelectNoneMixin(); */
 
       &:hover {
         box-shadow: 0 0 0 1px rgb(0, 190, 50);
@@ -153,7 +144,6 @@ export const style = restyler(() => {
     `,
 
     Result: css`
-      /* grid-area: 4 / 2 / span 3 / span 1; */
       height: 100%;
       display: flex;
       flex-direction: row;
@@ -179,7 +169,6 @@ export const style = restyler(() => {
         visibility: visible;
       }
     `,
-
 
     Error: css`
       font-size: 110%;    
