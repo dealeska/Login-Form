@@ -1,31 +1,46 @@
-import { Button, Div, Input, RxDiv, RxTextArea, usingParent, RxA, A } from 'reactronic-front'
+import { Button, Div, Input, RxDiv, RxTextArea, usingParent, RxA, A, RxImg } from 'reactronic-front'
 import { PageView } from './Page.view'
-import { style } from './EnterPage.css'
+import { style } from './Page.css'
 import { App, SensorInfo } from '../models/App'
+import { SearchMonitor } from '../models/Authentication'
 
 export function EnterPageView(app: App) {
   return (
-    Div('EnterPageView', e => {
-      Div('Title', e => {
-        e.className = style.class.Title
-        e.innerHTML = `Welcome, ${app.authentication.login}!`
+    PageView(app.enterPage, e => {
+      Div('Description', e => {
+        e.className = style.class.Description
+        e.innerHTML = app.authentication.quote
       })
-      Div('Content', e => {
-        e.className = style.class.ContentContent
-        Div('Description', e => {
-          e.className = style.class.Description
-          e.innerHTML = app.authentication.quote
-        })
-        RxDiv('Button', null, e => {
-          e.className = style.class.Button
-          e.eventInfo = { pointer: new SensorInfo('log-out') }
-          Div('FindLabel', e => {
-            e.className = style.class.FindLabel
-            e.textContent = 'Log out'
+      Div('ButtonContainer', e => {
+        e.className = style.class.ButtonContainer
+        Div('Result', e => {
+          e.className = style.class.Result
+          RxDiv('Button', null, e => {
+            e.className = style.class.Button
+            e.eventInfo = { pointer: new SensorInfo('log-out') }
+            Div('FindLabel', e => {
+              e.className = style.class.FindLabel
+              e.textContent = 'Log Out'
+            })
+          })
+          RxImg('SearchIndicator', null, e => {
+            e.className = style.class.SearchIndicator
+            e.setAttribute('rx-active', SearchMonitor.isActive ? 'true' : 'false')
+            e.src = './assets/loading.svg'
           })
         })
       })
+      // RxDiv('Button', null, e => {
+      //   e.className = style.class.Button
+      //   e.eventInfo = { pointer: new SensorInfo('log-out') }
+      //   Div('FindLabel', e => {
+      //     e.className = style.class.FindLabel
+      //     e.textContent = 'Log out'
+      //   })
+      // })
     })
+
+
   )
 }
 

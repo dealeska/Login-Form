@@ -185,6 +185,13 @@ export const style = restyler(() => {
       font-size: 110%;    
       color: ${themes.active.errorText};
     `,
+
+    ButtonContainer: css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1.75ch;
+    `,
   }
 
 })

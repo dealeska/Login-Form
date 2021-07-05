@@ -19,7 +19,7 @@ export class App extends ObservableObject {
     super()
     this.sensors = new WebSensors()
     this.homePage = new Page('/home', 'Home', 'Login Form')
-    this.enterPage = new Page('/enter', 'Enter', 'Login Form')
+    this.enterPage = new Page('/enter', 'Enter', 'Welcom!')
     this.pages = [this.homePage, this.enterPage]
     this.authentication = new Authentication()
   }
@@ -28,6 +28,7 @@ export class App extends ObservableObject {
   protected updateActivePage(): void {
     if (this.authentication.state == State.LogIn) {
       this.enterPage.isActive = true
+      this.enterPage.title = `Welcome, ${this.authentication.login}!`
       this.homePage.isActive = false
     } else {
       this.homePage.isActive = true
