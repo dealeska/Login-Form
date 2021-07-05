@@ -22,7 +22,7 @@ export const style = restyler(() => {
       display: grid;
       grid-gap: 2em 4em;
       grid-template-rows: auto 1fr;
-      grid-template-columns: 1fr 1fr 1.2fr;
+      grid-template-columns: 1.2fr 1.7fr 1.2fr;
       overflow-x: hidden;
 
       @media screen and (max-width: 450px) {
@@ -32,15 +32,19 @@ export const style = restyler(() => {
     `,
 
     Title: css`
-      grid-row: 1 / span 1;
-      grid-column: 1 / span 2;
+      /* grid-row: 1 / span 1;
+      grid-column: 2 / span 2; */
       font-size: 300%;
       font-weight: bold;
       line-height: 1.2;
       text-transform: uppercase;
-      padding-left: 1.5ch;
-      border-left: 0.12ch solid ${themes.active.activeItemMarker};
+      /* padding-left: 1ch;
+      padding-right: 1ch; */
+      border-bottom: 0.12ch solid ${themes.active.activeItemMarker};
       color: ${themes.active.titleForeground};
+      grid-column-start: 2;
+      grid-column-end: 2;
+      text-align: center;
 
       @media screen and (max-width: 1110px) {
         font-size: 250%;
@@ -51,12 +55,16 @@ export const style = restyler(() => {
     `,
 
     Content: css`
-      grid-row: 3 / span 1;
-      grid-column: 2 / span 2;
+      /* grid-row: 3 / span 1;
+      grid-column: 2 / span 2; */
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 4;
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;
       overflow: hidden;
+      text-align: center;
 
       @media screen and (max-width: 450px) {
         grid-row: 3 / span 1;
@@ -86,17 +94,18 @@ export const style = restyler(() => {
       }
     `,
 
-    ContentContent: css`
+    InputsContainer: css`
       display: flex;
       flex-direction: column;
+      align-items: center;
     `,
 
     Input: css`
-      width: 50%;
+      width: 80%;
       height: 30px;
       padding: 5px;
       z-index: 1000000;
-      margin: 10px 0.25ch;    
+      margin: 1ch 0;    
       background-color: ${themes.active.formTextAreaBackground};
       color: ${themes.active.formTextAreaForeground};;
       caret-color: ${themes.active.formTextAreaCaretColor};
@@ -119,7 +128,7 @@ export const style = restyler(() => {
       background-color: ${themes.active.formFindButtonBackground};
       margin-bottom: 1ch;
       margin-right: 0.5ch;
-      margin-left: 0.1ch;
+      margin-left: 4ch;
       margin-top: 5px;
       cursor: pointer;
       box-shadow: 0 0 1px 0 transparent;
@@ -144,7 +153,7 @@ export const style = restyler(() => {
     `,
 
     Result: css`
-      grid-area: 4 / 2 / span 3 / span 1;
+      /* grid-area: 4 / 2 / span 3 / span 1; */
       height: 100%;
       display: flex;
       flex-direction: row;

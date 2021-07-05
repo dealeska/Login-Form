@@ -14,7 +14,7 @@ export function HomePageView(app: App) {
           e.innerHTML = 'Enter your login and password'
         })
         Div('Inputs', e => {
-          e.className = style.class.ContentContent
+          e.className = style.class.InputsContainer
           Input('Login', e => {
             e.className = style.class.Input
             e.placeholder = 'login'

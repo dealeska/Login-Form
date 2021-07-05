@@ -8,7 +8,7 @@ export const style = restyler(() => {
       display: grid;
       grid-gap: 2em 4em;
       grid-template-rows: auto 1fr auto;
-      grid-template-columns: 0 31fr 31fr 38fr 0;
+      grid-template-columns: 0 30fr 30fr 30fr 0;
       font-size: calc(14px + (20 - 14) * (100vw - 800px) / (1920 - 800));
       font-family: Calibri, Tahoma, Arial, sans-serif;
       background-color: ${themes.active.background};
