@@ -1,9 +1,11 @@
-import { Button, Div, Input, RxDiv, RxTextArea, usingParent, RxA, A } from 'reactronic-front'
+import { Div, RxDiv, RxImg } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './EnterPage.css'
 import { App, SensorInfo } from '../models/App'
+import { SearchMonitor } from '../models/Authentication'
 
 export function EnterPageView(app: App) {
+<<<<<<< HEAD
   {
     return (
       Div('PageView-', e => {
@@ -38,14 +40,34 @@ export function EnterPageView(app: App) {
                 e.className = style.class.FindLabel
                 e.textContent = 'Log out'
               })
+=======
+  return (
+    PageView(app.enterPage, e => {
+      Div('Description', e => {
+        e.className = style.class.Description
+        e.innerHTML = app.authentication.quote
+      })
+      Div('ButtonContainer', e => {
+        e.className = style.class.ButtonContainer
+        Div('Result', e => {
+          e.className = style.class.Result
+          RxDiv('Button', null, e => {
+            e.className = style.class.Button
+            e.eventInfo = { pointer: new SensorInfo('log-out') }
+            Div('FindLabel', e => {
+              e.className = style.class.FindLabel
+              e.textContent = 'Log Out'
+>>>>>>> 01c95981107049dcd7b2d015551f6711a227dea1
             })
+          })
+          RxImg('SearchIndicator', null, e => {
+            e.className = style.class.SearchIndicator
+            e.setAttribute('rx-active', SearchMonitor.isActive ? 'true' : 'false')
+            e.src = './assets/loading.svg'
           })
         })
       })
-    )
-  }
+    })
+  )
 }
 
-function handle(err: any): any {
-  throw new Error('Function not implemented.')
-}

@@ -15,14 +15,13 @@ export const style = restyler(() => {
       justify-self: center;
     }
   `
-
   return {
     Page: css`
       margin: 0;
       display: grid;
       grid-gap: 2em 4em;
       grid-template-rows: auto 1fr;
-      grid-template-columns: 1fr 1fr 1.2fr;
+      grid-template-columns: 1.2fr 1.7fr 1.2fr;
       overflow-x: hidden;
 
       @media screen and (max-width: 450px) {
@@ -32,12 +31,23 @@ export const style = restyler(() => {
     `,
 
     Title: css`
+<<<<<<< HEAD
       grid-row: 1 / span 1;
       grid-column: 2 / span 2;
       font-size: 300%;
       font-weight: bold;      
       text-transform: uppercase;      
+=======
+      font-size: 300%;
+      font-weight: bold;
+      line-height: 1.2;
+      text-transform: uppercase;
+      border-bottom: 0.12ch solid ${themes.active.activeItemMarker};
+>>>>>>> 01c95981107049dcd7b2d015551f6711a227dea1
       color: ${themes.active.titleForeground};
+      grid-column-start: 2;
+      grid-column-end: 2;
+      text-align: center;
 
       @media screen and (max-width: 1110px) {
         font-size: 250%;
@@ -48,12 +58,14 @@ export const style = restyler(() => {
     `,
 
     Content: css`
-      grid-row: 3 / span 1;
-      grid-column: 2 / span 2;
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 4;
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;
       overflow: hidden;
+      text-align: center;
 
       @media screen and (max-width: 450px) {
         grid-row: 3 / span 1;
@@ -83,20 +95,21 @@ export const style = restyler(() => {
       }
     `,
 
-    ContentContent: css`
+    InputsContainer: css`
       display: flex;
       flex-direction: column;
+      align-items: center;
     `,
 
     Input: css`
-      width: 50%;
+      width: 80%;
       height: 30px;
       padding: 5px;
       z-index: 1000000;
-      margin: 10px 0.25ch;    
-      background-color: ${themes.active.playgroundTextAreaBackground};
-      color: ${themes.active.playgroundTextAreaForeground};;
-      caret-color: ${themes.active.playgroundTextAreaCaretColor};
+      margin: 1ch 0;    
+      background-color: ${themes.active.formTextAreaBackground};
+      color: ${themes.active.formTextAreaForeground};;
+      caret-color: ${themes.active.formTextAreaCaretColor};
       &:focus {
         outline: none;
       }
@@ -106,17 +119,16 @@ export const style = restyler(() => {
       }
     `,
 
-
     Button: css`
       font-size: 125%;
       display: flex;
       flex-direction: row;
       color: white;
       text-shadow: 0 0 1px gray;
-      background-color: ${themes.active.playgroundFindButtonBackground};
+      background-color: ${themes.active.formFindButtonBackground};
       margin-bottom: 1ch;
       margin-right: 0.5ch;
-      margin-left: 0.1ch;
+      margin-left: 4ch;
       margin-top: 5px;
       cursor: pointer;
       box-shadow: 0 0 1px 0 transparent;
@@ -124,7 +136,6 @@ export const style = restyler(() => {
       border-radius: 0.25em;
       user-select: none;
       width: fit-content;
-      /* .UserSelectNoneMixin(); */
 
       &:hover {
         box-shadow: 0 0 0 1px rgb(0, 190, 50);
@@ -135,13 +146,12 @@ export const style = restyler(() => {
       }
 
       &:active {
-        background-color: lighten(${themes.active.playgroundFindButtonBackground}, 10%);
+        background-color: lighten(${themes.active.formFindButtonBackground}, 10%);
       }
 
     `,
 
     Result: css`
-      grid-area: 4 / 2 / span 3 / span 1;
       height: 100%;
       display: flex;
       flex-direction: row;
@@ -168,10 +178,16 @@ export const style = restyler(() => {
       }
     `,
 
-
     Error: css`
       font-size: 110%;    
       color: ${themes.active.errorText};
+    `,
+
+    ButtonContainer: css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1.75ch;
     `,
   }
 
