@@ -11,6 +11,7 @@ export enum State {
   LogOut
 }
 
+//
 const Delay = 100
 
 export const SearchMonitor = Monitor.create('Search Monitor', -1, Delay)
