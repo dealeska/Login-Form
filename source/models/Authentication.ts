@@ -11,7 +11,6 @@ export enum State {
   LogOut
 }
 
-//
 const Delay = 100
 
 export const SearchMonitor = Monitor.create('Search Monitor', -1, Delay)
@@ -25,7 +24,6 @@ export class Authentication extends ObservableObject {
   ]
   @unobservable quote: string
   state: State
-  stateMessage: string
   login: string
   password: string
   constructor() {
@@ -34,7 +32,6 @@ export class Authentication extends ObservableObject {
     this.login = ''
     this.password = ''
     this.state = State.LogOut
-    this.stateMessage = ''
   }
 
   @transaction
@@ -65,11 +62,11 @@ export class Authentication extends ObservableObject {
 
     if (user !== undefined) {
       this.state = State.LogIn
-      this.stateMessage = ''
+      //console.log('Авторизирован')
     }
     else {
       this.state = State.IncorrectData
-      this.stateMessage = 'Incorrect username or password'
+      //console.log('Не авторизирован')
     }
   }
 }

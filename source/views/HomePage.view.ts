@@ -2,7 +2,7 @@ import { Div, Input, RxDiv, RxImg } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
 import { App, SensorInfo } from '../models/App'
-import { SearchMonitor } from '../models/Authentication'
+import { SearchMonitor, State } from '../models/Authentication'
 
 export function HomePageView(app: App) {
   {
@@ -50,7 +50,11 @@ export function HomePageView(app: App) {
         })
         RxDiv('Description', null, e => {
           e.className = style.class.Error
-          e.innerHTML = app.authentication.stateMessage
+          if (app.authentication.state === State.IncorrectData) {
+            e.innerHTML = 'Incorrect username or password'
+          } else {
+            e.innerHTML = ''
+          }
         })
       })
     )

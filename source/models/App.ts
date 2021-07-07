@@ -27,10 +27,12 @@ export class App extends ObservableObject {
   @reaction
   protected updateActivePage(): void {
     if (this.authentication.state == State.LogIn) {
+      //console.log('Переход на страницу ВХОД')
       this.enterPage.isActive = true
       this.enterPage.title = `Welcome, ${this.authentication.login}!`
       this.homePage.isActive = false
     } else {
+      //console.log('Переход на страницу ДОМОЙ')
       this.homePage.isActive = true
       this.enterPage.isActive = false
     }
@@ -66,9 +68,6 @@ export class App extends ObservableObject {
       console.log(tags)
       if (tags[0] === 'log-in') {
         await this.authentication.checkUser()
-      } else if (tags[0] === 'log-out') {
-        this.authentication.resetUser()
-        this.authentication.state = State.LogOut
       }
     }
   }
