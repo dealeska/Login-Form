@@ -52,7 +52,7 @@ export const style = restyler(() => {
     Content: css`
       grid-column-start: 2;
       grid-column-end: 2;
-      grid-row-start: 4;
+      grid-row-start: 3;
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;
