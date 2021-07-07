@@ -31,19 +31,11 @@ export const style = restyler(() => {
     `,
 
     Title: css`
-<<<<<<< HEAD
-      grid-row: 1 / span 1;
-      grid-column: 2 / span 2;
-      font-size: 300%;
-      font-weight: bold;      
-      text-transform: uppercase;      
-=======
       font-size: 300%;
       font-weight: bold;
       line-height: 1.2;
       text-transform: uppercase;
       border-bottom: 0.12ch solid ${themes.active.activeItemMarker};
->>>>>>> 01c95981107049dcd7b2d015551f6711a227dea1
       color: ${themes.active.titleForeground};
       grid-column-start: 2;
       grid-column-end: 2;
@@ -60,7 +52,7 @@ export const style = restyler(() => {
     Content: css`
       grid-column-start: 2;
       grid-column-end: 2;
-      grid-row-start: 4;
+      grid-row-start: 3;
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;

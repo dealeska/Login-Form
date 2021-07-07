@@ -1,48 +1,38 @@
 import { ObservableObject, reaction, transaction, unobservable } from 'reactronic'
-import { WebSensors, PointerButton } from 'reactronic-front'
-import { Authentication } from './Authentication'
+import { WebSensors, PointerButton, Keyboard } from 'reactronic-front'
+import { Authentication, State } from './Authentication'
 import { Page } from './Page'
-import { HashNavigation } from './HashNavigation'
 
 export class SensorInfo {
   constructor(public info: string) { }
 }
 
 export class App extends ObservableObject {
-  @unobservable readonly version: string
-  @unobservable readonly navigation: HashNavigation
   @unobservable readonly homePage: Page
   @unobservable readonly enterPage: Page
   @unobservable readonly pages: Page[]
   @unobservable readonly sensors: WebSensors
 
-  activePage: Page
-  user: Authentication
+  authentication: Authentication
 
-  constructor(version: string) {
+  constructor() {
     super()
-    this.navigation = new HashNavigation()
     this.sensors = new WebSensors()
-    this.version = version
     this.homePage = new Page('/home', 'Home', 'Login Form')
-    this.enterPage = new Page('/enter', 'Enter', 'Login Form')
+    this.enterPage = new Page('/enter', 'Enter', 'Welcom!')
     this.pages = [this.homePage, this.enterPage]
-    this.activePage = this.pages[0]
-    this.activePage.isActive = true
-    this.user = new Authentication()
+    this.authentication = new Authentication()
   }
 
   @reaction
   protected updateActivePage(): void {
-    const path = this.navigation.path
-    const newActivePage = this.pages.find(value => path.startsWith(value.hashLink))
-    if (newActivePage instanceof Page) {
-      newActivePage.isActive = true
-      this.activePage = newActivePage
-      this.pages.forEach(x => {
-        if (x !== newActivePage)
-          x.isActive = false
-      })
+    if (this.authentication.state == State.LogIn) {
+      this.enterPage.isActive = true
+      this.enterPage.title = `Welcome, ${this.authentication.login}!`
+      this.homePage.isActive = false
+    } else {
+      this.homePage.isActive = true
+      this.enterPage.isActive = false
     }
   }
 
@@ -55,9 +45,30 @@ export class App extends ObservableObject {
       const tags = infos.map((x) => (x as SensorInfo).info)
       console.log(tags)
       if (tags[0] === 'log-in') {
-        await this.user.checkUser()
+        await this.authentication.checkUser()
       } else if (tags[0] === 'log-out') {
-        this.user.resetUser()
+        this.authentication.resetUser()
+        this.authentication.state = State.LogOut
+      }
+    }
+  }
+
+  // срабатывает не с первого раза (не всегда переходит на страницу)
+  // вообще так то и по нажатию мышкой по кнопке не всегда с первого раза переходит на другую страницу
+  // нужно как то пофиксить, но я пока не знаю даже в чем проблема
+  @reaction
+  protected async handleEnterPressed(): Promise<void> {
+    const { keyboard } = this.sensors
+    const infos = keyboard.eventInfos
+    console.log('нажатие на кнопку')
+    if (keyboard.down === 'Enter') {
+      const tags = infos.map((x) => (x as SensorInfo).info)
+      console.log(tags)
+      if (tags[0] === 'log-in') {
+        await this.authentication.checkUser()
+      } else if (tags[0] === 'log-out') {
+        this.authentication.resetUser()
+        this.authentication.state = State.LogOut
       }
     }
   }
