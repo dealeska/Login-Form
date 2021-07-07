@@ -33,13 +33,10 @@ export const style = restyler(() => {
 
     Title: css`
       grid-row: 1 / span 1;
-      grid-column: 1 / span 2;
+      grid-column: 2 / span 2;
       font-size: 300%;
-      font-weight: bold;
-      line-height: 1.2;
-      text-transform: uppercase;
-      padding-left: 1.5ch;
-      border-left: 0.12ch solid ${themes.active.activeItemMarker};
+      font-weight: bold;      
+      text-transform: uppercase;      
       color: ${themes.active.titleForeground};
 
       @media screen and (max-width: 1110px) {

@@ -41,7 +41,7 @@ export class HashNavigation extends ObservableObject {
 
   @transaction
   protected browserHashChanged(): void {
-    const hash = location.hash // don't exclude # symbol via .substring(1)
+    const hash = location.hash
     const p = parseLocation(hash)
     this.path = p.path
     this.params = p.params
@@ -56,7 +56,7 @@ function parseLocation(location: string): { path: string, params: NavigationPara
   if (searchPos > -1) {
     path = location.slice(0, searchPos)
     const search = location.slice(searchPos)
-    const searchParams = new URLSearchParams(search) // makes decodeURIComponent
+    const searchParams = new URLSearchParams(search)
     searchParams.forEach((value, key) => params[key] = value)
   }
   else {

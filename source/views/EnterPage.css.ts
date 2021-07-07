@@ -33,15 +33,12 @@ export const style = restyler(() => {
 
     Title: css`
       grid-row: 1 / span 1;
-      grid-column: 1 / span 2;
+      grid-column: 2 / span 2;
       font-size: 300%;
       font-weight: bold;
       line-height: 1.2;
-      text-transform: uppercase;
-      padding-left: 1.5ch;
-      border-left: 0.12ch solid ${themes.active.activeItemMarker};
+      text-transform: uppercase;      
       color: ${themes.active.titleForeground};
-      margin-bottom: 2ch;
 
       @media screen and (max-width: 1110px) {
         font-size: 250%;
@@ -52,7 +49,7 @@ export const style = restyler(() => {
     `,
 
     Content: css`
-      grid-row: 3 / span 1;
+      grid-row: 1 / span 1;
       grid-column: 2 / span 2;
       font-size: 100%;
       line-height: 1.2;
@@ -68,7 +65,7 @@ export const style = restyler(() => {
     RightSide,
 
     Description: css`
-      font-size: 100%;      
+      font-size: 150%;     
 
       img {
         height: 0.93ch;
@@ -87,9 +84,10 @@ export const style = restyler(() => {
       }
     `,
 
-    ContentContent: css`
-      display: flex;
-      flex-direction: column;
+    ContentContent: css`      
+      grid-row: 2 / span 1;
+      grid-column: 2 / span 2;
+      width: 60%;
     `,
 
     Input: css`
