@@ -24,9 +24,13 @@ export const style = restyler(() => {
       grid-template-columns: 1.2fr 1.7fr 1.2fr;
       overflow-x: hidden;
 
+      @media screen and (max-width: 750px) {
+        grid-template-rows: auto auto 1fr;
+        grid-template-columns: 0.3fr 1fr 0.3fr;
+      }
       @media screen and (max-width: 450px) {
         grid-template-rows: auto auto 1fr;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 0fr 1fr 0fr;
       }
     `,
 
@@ -68,7 +72,7 @@ export const style = restyler(() => {
     RightSide,
 
     Description: css`
-      font-size: 130%;
+      font-size: 22px;
 
       img {
         height: 0.93ch;
@@ -84,6 +88,13 @@ export const style = restyler(() => {
       a {
         border-bottom: 0.05em dashed ${themes.active.emphasizedText};
         color: ${themes.active.emphasizedText};
+      }
+
+      @media screen and (max-width: 650px) {
+        font-size: 19px;
+      }
+      @media screen and (max-width: 450px) {
+        font-size: 18px;
       }
     `,
 
@@ -143,7 +154,7 @@ export const style = restyler(() => {
 
     `,
 
-    Result: css`
+    ButtonInner: css`
       height: 100%;
       display: flex;
       flex-direction: row;

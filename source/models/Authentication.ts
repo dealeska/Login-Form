@@ -1,4 +1,4 @@
-import { ObservableObject, reaction, Monitor, monitor, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
+import { ObservableObject, Monitor, monitor, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
 
 export interface User {
   login: string
@@ -17,8 +17,8 @@ export const SearchMonitor = Monitor.create('Search Monitor', -1, Delay)
 
 export class Authentication extends ObservableObject {
   @unobservable readonly users: User[] = [
-    { login: 'anonimus', password: '12345678' },
-    { login: 'alesya', password: 'aysela' },
+    { login: 'anonymous', password: '12345678' },
+    { login: 'alesya', password: '12345678' },
     { login: 'test', password: 'test' },
     { login: 'login', password: 'pass' }
   ]
@@ -26,6 +26,7 @@ export class Authentication extends ObservableObject {
   state: State
   login: string
   password: string
+
   constructor() {
     super()
     this.quote = ''
@@ -45,7 +46,7 @@ export class Authentication extends ObservableObject {
   }
 
   @transaction
-  resetUser(): void {
+  resetFields(): void {
     this.login = ''
     this.password = ''
   }
@@ -53,20 +54,16 @@ export class Authentication extends ObservableObject {
   @transaction @reentrance(Reentrance.CancelAndWaitPrevious) @monitor(SearchMonitor)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
-
     const text = await result.json()
     this.quote = text.slip.advice
-    console.log(this.quote)
 
     const user = this.users.find(u => u.login === this.login && u.password === this.password)
 
     if (user !== undefined) {
       this.state = State.LogIn
-      //console.log('Авторизирован')
     }
     else {
       this.state = State.IncorrectData
-      //console.log('Не авторизирован')
     }
   }
 }

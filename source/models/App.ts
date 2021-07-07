@@ -1,5 +1,5 @@
-import { ObservableObject, reaction, transaction, unobservable } from 'reactronic'
-import { WebSensors, PointerButton, Keyboard } from 'reactronic-front'
+import { ObservableObject, reaction, unobservable } from 'reactronic'
+import { WebSensors, PointerButton } from 'reactronic-front'
 import { Authentication, State } from './Authentication'
 import { Page } from './Page'
 
@@ -19,7 +19,7 @@ export class App extends ObservableObject {
     super()
     this.sensors = new WebSensors()
     this.homePage = new Page('/home', 'Home', 'Login Form')
-    this.enterPage = new Page('/enter', 'Enter', 'Welcom!')
+    this.enterPage = new Page('/enter', 'Enter', 'Welcome!')
     this.pages = [this.homePage, this.enterPage]
     this.authentication = new Authentication()
   }
@@ -27,12 +27,10 @@ export class App extends ObservableObject {
   @reaction
   protected updateActivePage(): void {
     if (this.authentication.state == State.LogIn) {
-      //console.log('Переход на страницу ВХОД')
       this.enterPage.isActive = true
       this.enterPage.title = `Welcome, ${this.authentication.login}!`
       this.homePage.isActive = false
     } else {
-      //console.log('Переход на страницу ДОМОЙ')
       this.homePage.isActive = true
       this.enterPage.isActive = false
     }
@@ -45,25 +43,21 @@ export class App extends ObservableObject {
 
     if (pointer.click === PointerButton.Left && infos.length > 0) {
       const tags = infos.map((x) => (x as SensorInfo).info)
-      console.log(tags)
       if (tags[0] === 'log-in') {
         await this.authentication.checkUser()
       } else if (tags[0] === 'log-out') {
-        this.authentication.resetUser()
+        this.authentication.resetFields()
         this.authentication.state = State.LogOut
       }
     }
   }
 
-  // срабатывает не с первого раза (не всегда переходит на страницу)
-  // вообще так то и по нажатию мышкой по кнопке не всегда с первого раза переходит на другую страницу
-  // нужно как то пофиксить, но я пока не знаю даже в чем проблема
   @reaction
   protected async handleEnterPressed(): Promise<void> {
     const { keyboard } = this.sensors
     const infos = keyboard.eventInfos
-    console.log('нажатие на кнопку')
-    if (keyboard.down === 'Enter') {
+
+    if (keyboard.up === 'Enter') {
       const tags = infos.map((x) => (x as SensorInfo).info)
       console.log(tags)
       if (tags[0] === 'log-in') {

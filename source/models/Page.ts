@@ -5,7 +5,6 @@ export class Page extends ObservableObject {
   @unobservable readonly hashLink: string
   @unobservable readonly linkTitle: string
   @unobservable title: string
-  content: string
   isActive: boolean
 
   constructor(link: string, linkTitle: string, title: string) {
@@ -14,7 +13,6 @@ export class Page extends ObservableObject {
     this.hashLink = '#' + link
     this.linkTitle = linkTitle
     this.title = title
-    this.content = ''
     this.isActive = false
   }
 }

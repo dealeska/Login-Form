@@ -14,7 +14,7 @@ export function EnterPageView(app: App) {
       Div('ButtonContainer', e => {
         e.className = style.class.ButtonContainer
         Div('Result', e => {
-          e.className = style.class.Result
+          e.className = style.class.ButtonInner
           RxDiv('Button', null, e => {
             e.className = style.class.Button
             e.eventInfo = { pointer: new SensorInfo('log-out') }

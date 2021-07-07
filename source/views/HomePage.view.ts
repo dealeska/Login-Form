@@ -32,7 +32,7 @@ export function HomePageView(app: App) {
             }
           })
           Div('Result', e => {
-            e.className = style.class.Result
+            e.className = style.class.ButtonInner
             RxDiv('Button', null, e => {
               e.className = style.class.Button
               e.eventInfo = { pointer: new SensorInfo('log-in') }
