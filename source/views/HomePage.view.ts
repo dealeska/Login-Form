@@ -12,7 +12,7 @@ export function HomePageView(app: App) {
         e.className = style.class.Description
         e.innerHTML = 'Enter your login and password'
       })
-      Div('Inputs', e => {
+      Div('InputsContainer', e => {
         e.className = style.class.InputsContainer
         Input('Login', e => {
           e.className = style.class.Input
@@ -35,19 +35,19 @@ export function HomePageView(app: App) {
           Div('Button', e => {
             e.className = style.class.Button
             e.eventInfo = { pointer: 'log-in' }
-            Div('LogInLabel', e => {
+            Div('ButtonLabel', e => {
               e.className = style.class.ButtonLabel
               e.textContent = 'Log in'
             })
           })
-          RxImg('SearchIndicator', null, e => {
-            e.className = style.class.SearchIndicator
+          RxImg('AuthenticationMonitor', null, e => {
+            e.className = style.class.AuthenticationIndicator
             e.setAttribute('rx-active', AuthenticationMonitor.isActive ? 'true' : 'false')
             e.src = './assets/loading.svg'
           })
         })
       })
-      RxDiv('Description', null, e => {
+      RxDiv('ErrorMessage', null, e => {
         e.className = style.class.Error
         if (app.authentication.state === State.IncorrectData) {
           e.innerHTML = 'Incorrect username or password'

@@ -4,7 +4,7 @@ import { style } from './Page.css'
 
 export function PageView(page: Page, contentRenderer?: Render<HTMLElement>) {
   return (
-    Div('PageView-' + page.link, e => {
+    Div('PageView', e => {
       e.className = style.class.Page
       Div('Title', e => {
         e.className = style.class.Title

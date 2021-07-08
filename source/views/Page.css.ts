@@ -13,7 +13,6 @@ export const style = restyler(() => {
       grid-gap: 2em 4em;
       grid-template-rows: auto 1fr;
       grid-template-columns: 1.2fr 1.7fr 1.2fr;
-      overflow-x: hidden;
 
       @media screen and (max-width: 750px) {
         grid-template-rows: auto auto 1fr;
@@ -51,7 +50,6 @@ export const style = restyler(() => {
       font-size: 100%;
       line-height: 1.2;
       padding-bottom: 0.5ch;
-      overflow: hidden;
       text-align: center;
 
       @media screen and (max-width: 450px) {
@@ -62,22 +60,6 @@ export const style = restyler(() => {
 
     Description: css`
       font-size: 22px;
-
-      img {
-        height: 0.93ch;
-        margin-left: 1ch;
-        margin-right: 1ch;
-      }
-
-      b {
-        font-weight: inherit;
-        color: ${theme.emphasizedText};
-      }
-
-      a {
-        border-bottom: 0.05em dashed ${theme.emphasizedText};
-        color: ${theme.emphasizedText};
-      }
 
       @media screen and (max-width: 650px) {
         font-size: 19px;
@@ -97,11 +79,11 @@ export const style = restyler(() => {
       width: 80%;
       height: 30px;
       padding: 5px;
-      z-index: 1000000;
       margin: 1ch 0;    
       background-color: ${theme.formTextAreaBackground};
       color: ${theme.formTextAreaForeground};;
       caret-color: ${theme.formTextAreaCaretColor};
+
       &:focus {
         outline: none;
       }
@@ -111,6 +93,12 @@ export const style = restyler(() => {
       }
     `,
 
+    ButtonInner: css`     
+      display: flex;
+      flex-direction: row;
+      padding-left: 4ch;
+    `,
+
     Button: css`
       font-size: 125%;
       display: flex;
@@ -118,15 +106,11 @@ export const style = restyler(() => {
       color: white;
       text-shadow: 0 0 1px gray;
       background-color: ${theme.formFindButtonBackground};
-      margin-bottom: 1ch;
-      margin-right: 0.5ch;
-      margin-left: 0.5ch;
-      margin-top: 5px;
+      margin: 1ch 0.5ch 1ch 0.5ch;
       cursor: pointer;
       box-shadow: 0 0 1px 0 transparent;
       transition: box-shadow 0.3s ease;
       border-radius: 0.25em;
-      user-select: none;
       width: fit-content;
 
       &:hover {
@@ -143,28 +127,19 @@ export const style = restyler(() => {
 
     `,
 
-    ButtonInner: css`
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      padding-left: 4ch;
-    `,
-
-    ButtonLabel: css`
-      flex-grow: 0;
+    ButtonLabel: css`      
       padding: 0.7ch 1.5ch 0.7ch 1.5ch;
       background-color: transparent;
       display: flex;
-      justify-content: center;
       align-items: center;
     `,
 
-    SearchIndicator: css`
+    AuthenticationIndicator: css`
       height: 4ch;
       width: 4ch;
       margin-right: 0.5ch;
       visibility: hidden;
-      margin-top: 7px;
+      margin-top: 1.5ch;
 
       &[rx-active=true] {
         visibility: visible;
@@ -183,5 +158,4 @@ export const style = restyler(() => {
       margin-top: 1.75ch;
     `,
   }
-
 })
