@@ -4,17 +4,8 @@ import { themes } from './Themes'
 
 export const style = restyler(() => {
 
-  const RightSide = css`
-    grid-row: 1 / span 2;
-    grid-column: 3;
-    overflow: hidden;
+  const theme = themes.active
 
-    @media screen and (max-width: 450px) {
-      grid-row: 2 / span 1;
-      grid-column: 1 / span 2;
-      justify-self: center;
-    }
-  `
   return {
     Page: css`
       margin: 0;
@@ -39,8 +30,8 @@ export const style = restyler(() => {
       font-weight: bold;
       line-height: 1.2;
       text-transform: uppercase;
-      border-bottom: 0.12ch solid ${themes.active.activeItemMarker};
-      color: ${themes.active.titleForeground};
+      border-bottom: 0.12ch solid ${theme.activeItemMarker};
+      color: ${theme.titleForeground};
       grid-column-start: 2;
       grid-column-end: 2;
       text-align: center;
@@ -69,8 +60,6 @@ export const style = restyler(() => {
       }
     `,
 
-    RightSide,
-
     Description: css`
       font-size: 22px;
 
@@ -82,12 +71,12 @@ export const style = restyler(() => {
 
       b {
         font-weight: inherit;
-        color: ${themes.active.emphasizedText};
+        color: ${theme.emphasizedText};
       }
 
       a {
-        border-bottom: 0.05em dashed ${themes.active.emphasizedText};
-        color: ${themes.active.emphasizedText};
+        border-bottom: 0.05em dashed ${theme.emphasizedText};
+        color: ${theme.emphasizedText};
       }
 
       @media screen and (max-width: 650px) {
@@ -110,15 +99,15 @@ export const style = restyler(() => {
       padding: 5px;
       z-index: 1000000;
       margin: 1ch 0;    
-      background-color: ${themes.active.formTextAreaBackground};
-      color: ${themes.active.formTextAreaForeground};;
-      caret-color: ${themes.active.formTextAreaCaretColor};
+      background-color: ${theme.formTextAreaBackground};
+      color: ${theme.formTextAreaForeground};;
+      caret-color: ${theme.formTextAreaCaretColor};
       &:focus {
         outline: none;
       }
 
       &:focus:not([readOnly]) {
-        box-shadow: 0 0 0 2px ${themes.active.activeItemMarker};
+        box-shadow: 0 0 0 2px ${theme.activeItemMarker};
       }
     `,
 
@@ -128,10 +117,10 @@ export const style = restyler(() => {
       flex-direction: row;
       color: white;
       text-shadow: 0 0 1px gray;
-      background-color: ${themes.active.formFindButtonBackground};
+      background-color: ${theme.formFindButtonBackground};
       margin-bottom: 1ch;
       margin-right: 0.5ch;
-      margin-left: 4ch;
+      margin-left: 0.5ch;
       margin-top: 5px;
       cursor: pointer;
       box-shadow: 0 0 1px 0 transparent;
@@ -149,7 +138,7 @@ export const style = restyler(() => {
       }
 
       &:active {
-        background-color: lighten(${themes.active.formFindButtonBackground}, 10%);
+        background-color: lighten(${theme.formFindButtonBackground}, 10%);
       }
 
     `,
@@ -158,9 +147,10 @@ export const style = restyler(() => {
       height: 100%;
       display: flex;
       flex-direction: row;
+      padding-left: 4ch;
     `,
 
-    FindLabel: css`
+    ButtonLabel: css`
       flex-grow: 0;
       padding: 0.7ch 1.5ch 0.7ch 1.5ch;
       background-color: transparent;
@@ -183,7 +173,7 @@ export const style = restyler(() => {
 
     Error: css`
       font-size: 110%;    
-      color: ${themes.active.errorText};
+      color: ${theme.errorText};
     `,
 
     ButtonContainer: css`

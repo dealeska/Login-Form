@@ -1,24 +1,24 @@
 import { ObservableObject, Monitor, monitor, Reentrance, reentrance, transaction, unobservable } from 'reactronic'
 
-export interface User {
+export interface UserCredentials {
   login: string
   password: string
 }
 
 export enum State {
   IncorrectData,
-  LogIn,
-  LogOut
+  LoggedIn,
+  LoggedOut
 }
 
 const Delay = 100
 
-export const SearchMonitor = Monitor.create('Search Monitor', -1, Delay)
+export const AuthenticationMonitor = Monitor.create('Authentication Monitor', -1, Delay)
 
 export class Authentication extends ObservableObject {
-  @unobservable readonly users: User[] = [
+  @unobservable readonly credentials: UserCredentials[] = [
     { login: 'anonymous', password: '12345678' },
-    { login: 'alesya', password: '12345678' },
+    { login: 'alesya', password: 'yasela' },
     { login: 'test', password: 'test' },
     { login: 'login', password: 'pass' }
   ]
@@ -32,7 +32,7 @@ export class Authentication extends ObservableObject {
     this.quote = ''
     this.login = ''
     this.password = ''
-    this.state = State.LogOut
+    this.state = State.LoggedOut
   }
 
   @transaction
@@ -51,16 +51,16 @@ export class Authentication extends ObservableObject {
     this.password = ''
   }
 
-  @transaction @reentrance(Reentrance.CancelAndWaitPrevious) @monitor(SearchMonitor)
+  @transaction @reentrance(Reentrance.CancelAndWaitPrevious) @monitor(AuthenticationMonitor)
   async checkUser(): Promise<void> {
     const result = await fetch('https://api.adviceslip.com/advice' + '?timestamp=' + Date.now())
     const text = await result.json()
     this.quote = text.slip.advice
 
-    const user = this.users.find(u => u.login === this.login && u.password === this.password)
+    const user = this.credentials.find(u => u.login === this.login && u.password === this.password)
 
     if (user !== undefined) {
-      this.state = State.LogIn
+      this.state = State.LoggedIn
     }
     else {
       this.state = State.IncorrectData

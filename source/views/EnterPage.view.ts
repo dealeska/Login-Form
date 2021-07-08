@@ -1,8 +1,7 @@
-import { Div, RxDiv, RxImg } from 'reactronic-front'
+import { Div } from 'reactronic-front'
 import { PageView } from './Page.view'
 import { style } from './Page.css'
-import { App, SensorInfo } from '../models/App'
-import { SearchMonitor } from '../models/Authentication'
+import { App } from '../models/App'
 
 export function EnterPageView(app: App) {
   return (
@@ -13,20 +12,12 @@ export function EnterPageView(app: App) {
       })
       Div('ButtonContainer', e => {
         e.className = style.class.ButtonContainer
-        Div('Result', e => {
-          e.className = style.class.ButtonInner
-          RxDiv('Button', null, e => {
-            e.className = style.class.Button
-            e.eventInfo = { pointer: new SensorInfo('log-out') }
-            Div('FindLabel', e => {
-              e.className = style.class.FindLabel
-              e.textContent = 'Log Out'
-            })
-          })
-          RxImg('SearchIndicator', null, e => {
-            e.className = style.class.SearchIndicator
-            e.setAttribute('rx-active', SearchMonitor.isActive ? 'true' : 'false')
-            e.src = './assets/loading.svg'
+        Div('Button', e => {
+          e.className = style.class.Button
+          e.eventInfo = { pointer: 'log-out' }
+          Div('ButtonLabel', e => {
+            e.className = style.class.ButtonLabel
+            e.textContent = 'Log Out'
           })
         })
       })
