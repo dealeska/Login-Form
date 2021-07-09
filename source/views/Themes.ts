@@ -5,7 +5,7 @@ export class Themes extends ObservableObject {
   @unobservable readonly all: Theme[]
   active: Theme
 
-  constructor (...themes: Theme[]) {
+  constructor(...themes: Theme[]) {
     super()
     this.all = []
     themes.forEach(x => this.all.push(x))

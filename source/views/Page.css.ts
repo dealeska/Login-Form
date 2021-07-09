@@ -79,7 +79,7 @@ export const style = restyler(() => {
       width: 80%;
       height: 30px;
       padding: 5px;
-      margin: 1ch 0;    
+      margin: 1ch 0;
       background-color: ${theme.formTextAreaBackground};
       color: ${theme.formTextAreaForeground};;
       caret-color: ${theme.formTextAreaCaretColor};
@@ -93,7 +93,7 @@ export const style = restyler(() => {
       }
     `,
 
-    ButtonInner: css`     
+    ButtonInner: css`
       display: flex;
       flex-direction: row;
       padding-left: 4ch;
@@ -124,10 +124,9 @@ export const style = restyler(() => {
       &:active {
         background-color: lighten(${theme.formFindButtonBackground}, 10%);
       }
-
     `,
 
-    ButtonLabel: css`      
+    ButtonLabel: css`
       padding: 0.7ch 1.5ch 0.7ch 1.5ch;
       background-color: transparent;
       display: flex;
@@ -147,7 +146,7 @@ export const style = restyler(() => {
     `,
 
     Error: css`
-      font-size: 110%;    
+      font-size: 110%;
       color: ${theme.errorText};
     `,
 

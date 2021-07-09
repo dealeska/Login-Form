@@ -7,8 +7,7 @@ export class App extends ObservableObject {
   @unobservable readonly homePage: Page
   @unobservable readonly enterPage: Page
   @unobservable readonly sensors: WebSensors
-
-  authentication: Authentication
+  @unobservable readonly authentication: Authentication
 
   constructor() {
     super()
